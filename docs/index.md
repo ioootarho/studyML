@@ -1,15 +1,3 @@
-<script>  
-MathJax = {  
-  tex: {  
-    inlineMath: [['$', '$'], ['\\(', '\\)']],  
-    displayMath: [['$$', '$$'], ['\\[', '\\]']]  
-  }  
-};  
-</script>  
-<script id="MathJax-script" async  
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  
-</script>  
-  
 # はじめに
 
 本資料は「機械学習とは何か？」という疑問からスタートし、機械学習に関する周辺知識の中でも実務に直結するものを中心に取り扱う。  
