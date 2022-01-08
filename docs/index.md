@@ -1,4 +1,9 @@
-<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML">
+</script>
 
 # はじめに
 
@@ -295,9 +300,9 @@ AIの分類に関するもうひとつの議論が「汎用型AI」と「特異�
     - 例えば、マルサスの成長モデル（人口論）
         - $N$は人口を表す変数、$t$は時間を表す変数、$r$は定数とする
         - 時の経過に伴い人口がどう増減するかを表したモデル
-        \[
+        $$
         \frac{dN}{dt} = rN
-        \]
+        $$
         - 人口が多ければその分だけ生まれてくる子供も多いはず
             &rarr; 人口の変化率はその時点での人口に比例するはず
 - 統計モデル
