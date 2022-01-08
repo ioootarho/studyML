@@ -1,10 +1,14 @@
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]], displayMath: [ ['$$','$$'], ["\\[","\\]"] ] } });
-</script>
-<script type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML">
-</script>
-
+<script>  
+MathJax = {  
+  tex: {  
+    inlineMath: [['$', '$'], ['\\(', '\\)']]  
+  }  
+};  
+</script>  
+<script id="MathJax-script" async  
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  
+</script>  
+  
 # はじめに
 
 本資料は「機械学習とは何か？」という疑問からスタートし、機械学習に関する周辺知識の中でも実務に直結するものを中心に取り扱う。  
