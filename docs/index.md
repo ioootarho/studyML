@@ -1,5 +1,12 @@
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
 <script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-mml-chtml.js">
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
 
 # はじめに
@@ -289,7 +296,7 @@ y = ax + b
 \\]
 - 微分方程式
     - 微分の復習
-        - 微分とは変数$x$が変化したときの関数$f(x)$の変化率
+      - 微分とは変数$x$が変化したときの関数$f(x)$の変化率
 \\[
 \frac{d}{dx}f(x) = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h}
 \\]
