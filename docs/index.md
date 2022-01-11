@@ -319,12 +319,12 @@ y = ax + b
 - 統計モデル
     - 統計モデルとは、確率変数を用いて、得られたサンプルデータからその生成過程を表したもの
     - 例えば変数$x, y$とパラメータ$a, b$に加え、確率変数$\varepsilon$を用いた次のモデル  
-\\[
+$$
 \begin{align*}
 y = ax + b + \varepsilon \\
 \varepsilon \sim N(0, \sigma^2)
 \end{align*}
-\\]
+$$
     - ただし、$\varepsilon \sim N(0, \sigma^2)$は確率変数$\varepsilon$が平均$0$ 分散$\sigma^2$の正規分布に従うことを表す
     - 確率変数$\varepsilon$は誤差項と呼ばれるが、その意味するところは「予測値と実測値の誤差」ではなく「変数$x$で説明できないその他の要因」
 - Box-Jenkins法
@@ -417,8 +417,8 @@ $$
 &= \frac{1}{n}\sum_{i=1}^{n} (y-\beta_0 - \beta_1x_i)^2
 \end{align*}
 $$
-- ただし、確率変数\\(\varepsilon\\)は平均$0$なので消している
-- このように最小化したい対象を損失関数 (Loss Function) または誤差関数 (Error Function) と呼ぶ
+- ただし、確率変数\\(\varepsilon\\)は平均$0$なので消える
+- このように最小化したい対象を損失関数 (Loss Function) と呼ぶ
 - その他の主な損失関数
     - 交差エントロピー誤差 (Logarithmic Loss; Log Loss)
         - 分類問題で用いる
