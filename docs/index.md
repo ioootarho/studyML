@@ -408,16 +408,16 @@ y_i = \beta_0 + \beta_1x_i + \varepsilon_i \cr
 - 従って、次を最小にするようなパラメータ$\beta_0, \beta_1$を求めれば良い
 \\[
 \begin{align}
-\frac{1}{n}\sum_{i=1}^{n} \{y_i-(\beta_0 + \beta_1x_i + \varepsilon_i)\}
-\end{align}
-\\]
-- 計算を楽にするため2乗したものを平均二乗誤差 (Mean Squared Error; MSE) と呼ぶ
-\\[
-\begin{align}
-\frac{1}{n}\sum_{i=1}^{n} \{y_i-(\beta_0 + \beta_1x_i + \varepsilon_i)\}^2 = \frac{1}{n}\sum_{i=1}^{n} (y_i - \beta_0 - \beta_1x_i)^2
+\frac{1}{n}\sum_{i=1}^{n} \{y_i - (\beta_0 + \beta_1x_i + \varepsilon_i)\} = \frac{1}{n}\sum_{i=1}^{n} (y_i - \beta_0 - \beta_1x_i)
 \end{align}
 \\]
 - ただし、誤差項\\(\varepsilon_i\\)は平均$0$なので消える
+- 計算を楽にするため2乗したものを平均二乗誤差 (Mean Squared Error; MSE) と呼ぶ
+\\[
+\begin{align}
+\frac{1}{n}\sum_{i=1}^{n} (y_i - \beta_0 - \beta_1x_i)^2
+\end{align}
+\\]
 - さらにこれの平方根を取ったものを二乗平均平方根誤差 (Root Mean Squared Error; RMSE) と呼び、MSEの代わりにRMSEを用いることもある
 - このように最小化したい対象を損失関数 (Loss Function) やコスト関数 (Cost Function) と呼ぶ
 - その他の主な損失関数
