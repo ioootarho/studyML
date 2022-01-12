@@ -323,7 +323,7 @@ y = ax + b
     - 確率変数$\varepsilon$は誤差項と呼ばれるが、その意味するところは「予測値と実測値の誤差」ではなく「変数$x$で説明できないその他の要因」  
 \\[
 \begin{align}
-y = ax + b + \varepsilon\\\\
+y = ax + b + \varepsilon \cr
 \varepsilon \sim N(0, \sigma^2)
 \end{align}
 \\]
@@ -394,7 +394,7 @@ y = ax + b + \varepsilon\\\\
     - $i$番目の実測値\\(y_i\\)の予測値\\(\hat{y_i}\\)を、変数\\(x_i\\)とパラメータ\\(\beta_0, \beta_1\\)、確率変数\\(\varepsilon\\)を用いて表す  
 \\[
 \begin{align}
-\hat{y_i} = \beta_0 + \beta_1x_i + \varepsilon\cr
+\hat{y_i} = \beta_0 + \beta_1x_i + \varepsilon \cr
 \varepsilon \sim N(0, \sigma^2)
 \end{align}
 \\]
@@ -405,19 +405,20 @@ y = ax + b + \varepsilon\\\\
     - 歴史的理由から、モデルの形を仮説 (hypothesis) と呼ぶ
 - 良いモデルであれば実測値と予測値の差が小さいはず
 - 従って、次を最小にするようなパラメータ$\beta_0, \beta_1$を求めれば良い
-$$
+\\[
 \begin{align}
 \frac{1}{n}\sum_{i=1}^{n}(y-\hat{y_i}) = \frac{1}{n}\sum_{i=1}^{n} \{y-(\beta_0 + \beta_1x_i + \varepsilon)\}
 \end{align}
-$$
-- 計算を楽にするため両辺2乗したものを平均二乗誤差 (Mean Squared Error; MSE) と呼ぶ
-$$
+\\]
+- 計算を楽にするため2乗したものを平均二乗誤差 (Mean Squared Error; MSE) と呼ぶ
+\\[
 \begin{align}
-\frac{1}{n}\sum_{i=1}^{n}(y-\hat{y_i})^2 &= \frac{1}{n}\sum_{i=1}^{n} \{y-(\beta_0 + \beta_1x_i + \varepsilon)\}^2 \\
+\frac{1}{n}\sum_{i=1}^{n}(y-\hat{y_i})^2 &= \frac{1}{n}\sum_{i=1}^{n} \{y-(\beta_0 + \beta_1x_i + \varepsilon)\}^2 \cr
 &= \frac{1}{n}\sum_{i=1}^{n} (y-\beta_0 - \beta_1x_i)^2
 \end{align}
-$$
+\\]
 - ただし、確率変数\\(\varepsilon\\)は平均$0$なので消える
+- さらにこれの平方根を取ったものを二乗平均平方根誤差 (Root Mean Squared Error; RMSE) と呼び、MSEの代わりにRMSEを用いることもある
 - このように最小化したい対象を損失関数 (Loss Function) と呼ぶ
 - その他の主な損失関数
     - 交差エントロピー誤差 (Logarithmic Loss; Log Loss)
