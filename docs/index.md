@@ -414,7 +414,7 @@ y_i = \beta_0 + \beta_1x_i + \varepsilon_i \cr
 - 計算を楽にするため2乗したものを平均二乗誤差 (Mean Squared Error; MSE) と呼ぶ
 \\[
 \begin{align}
-\frac{1}{n}\sum_{i=1}^{n} \{y_i-(\beta_0 + \beta_1x_i + \varepsilon_i)\}^2 = \frac{1}{n}\sum_{i=1}^{n} (y_i - \beta_0 - \beta_1x_i)^2
+\frac{1}{n}\sum_{i=1}^{n} {y_i-(\beta_0 + \beta_1x_i + \varepsilon_i)}^2 = \frac{1}{n}\sum_{i=1}^{n} (y_i - \beta_0 - \beta_1x_i)^2
 \end{align}
 \\]
 - ただし、誤差項\\(\varepsilon_i\\)は平均$0$なので消える
@@ -485,30 +485,27 @@ J(\beta_0, \beta_1) = \frac{1}{n}\sum_{i=1}^{n} (crime_i - \beta_0 - \beta_1unem
 
 - モデルを作るには
     - 手元にあるのは日本国内1,839市町村のデータ
-    - つまりサンプル数$n=1839$
+    - つまりサンプルサイズ$n=1839$
     - このデータを使って$J(\beta_0, \beta_1)$を最小にするようなパラメータ$\beta_0, \beta_1$を求めれば良い  
     &rarr; 最小二乗法もしくは勾配降下法
 
 ## 最小二乗法
 
-以下の条件を満たす場合は最小二乗法を用いることができる。
-
-
 最小二乗法とは正規方程式と呼ばれる次の方程式を解いて、$J(\beta_0, \beta_1)$を最小にするようなパラメータ$\beta_0, \beta_1$を求める方法。  
-説明変数行列$X$、目的変数ベクトル$y$、パラメータベクトル$\beta$ に対して
 \\[
 \beta = (X^TX)^{-1}X^Ty
 \\]
-ただし、右上の添字$T$は転置行列、右上の添字$-1$は逆行列を表す。  
+ただし、$X$は説明変数行列、$y$は目的変数ベクトル、$\beta$はパラメータベクトルを表す。  
+また、右上の添字$T$は転置行列、右上の添字$-1$は逆行列を表す。  
 
 - 計算上の注意点
     - 行列$X^TX$が逆行列を持たない場合は正規方程式が解けない  
     &rarr; 行列$X^TX$は正則条件（逆行列を持つための条件）を満たす必要がある  
-    &rarr; マルチコがあると正則条件を満たさない
+    &rarr; マルチコがあると正則条件を満たさない  
     &rarr; だからマルチコが嫌われる
 
 正規方程式の導出は以下の通り。  
-今、$(unemp_1, crime_1), (unemp_2, crime_2), \dots , (unemp_n, crime_n)$という$n$組のデータについて  
+$(unemp_1, crime_1), (unemp_2, crime_2), \dots , (unemp_n, crime_n)$という$n$組のデータについて  
 \\[
 \begin{align}
 crime_i = \beta_0 + \beta_1unemp_i + \varepsilon_i \cr
@@ -551,7 +548,7 @@ x=
 のように表記すれば、モデルは次のように行列表記できる。  
 \\[
 \begin{align}
-y = X\beta + \varepsilon \\
+y = X\beta + \varepsilon \cr
 \varepsilon \sim N_n(0, \sigma^2I_n)
 \end{align}
 \\]
@@ -590,9 +587,9 @@ crime_n - \beta_0 - \beta_1unemp_n
 なので、損失関数は
 \\[
 \begin{align}
-J(\beta) &= \frac{1}{n}e^Te \\
-&= \frac{1}{n}(y-X\beta)^T(y-X\beta) \\
-&= \frac{1}{n}(y^T - \beta^T X^T)(y-X\beta) \\
+J(\beta) &= \frac{1}{n}e^Te \cr
+&= \frac{1}{n}(y-X\beta)^T(y-X\beta) \cr
+&= \frac{1}{n}(y^T - \beta^T X^T)(y-X\beta) \cr
 &= y^Ty -2\beta^TX^Ty + \beta^TX^TX\beta
 \end{align}
 \\]
@@ -615,13 +612,27 @@ X^TX\beta = X^Ty
 もう一つの代表的手法が勾配降下法。  
 勾配降下法とは次のような計算を繰り返すことで$J(\beta_0, \beta_1)$を最小にするようなパラメータ$\beta_0, \beta_1$を求めるアルゴリズム。  
 パラメータの数を$j$ 学習率を$\alpha$として  
-\\[
+$$
 \beta_j := \beta_j - \alpha \frac{\partial}{\partial \beta_j} J(\beta_0, \beta_1)
-\\]
+$$
 
 ただし、$:=$は右辺を左辺に代入する演算子。  
 また、$\frac{\partial}{\partial \beta_j} J(\beta_0, \beta_1)$は$J(\beta_0, \beta_1)$の$\beta_j$についての偏微分を表す。  
-各$j$についての偏微分を全て並べたベクトルを勾配と呼ぶ。
+各$j$についての偏微分を全て並べたベクトルを勾配と呼ぶ。  
+
+$$
+\begin{align}
+J(\beta_0, \beta_1) = \frac{1}{n}\sum_{i=1}^{n} (crime_i - \beta_0 - \beta_1unemp_i)^2
+\end{align}
+$$
+具体的に偏微分を計算すると
+$$
+\begin{align}
+& \beta_0 := \beta_0 - \alpha \frac{1}{n} \sum_{i=1}^{n}(crime_i-\beta_0-\beta_1unemp_i) \cr
+& \beta_1 := \beta_1 - \alpha \frac{1}{n} \sum_{i=1}^{n}(crime_i-\beta_0-\beta_1unemp_i)unemp_i
+\end{align}
+$$
+となるので、これを使ってパラメータの値を更新していいく。
 
 # 分類問題
 
@@ -638,16 +649,16 @@ X^TX\beta = X^Ty
 刑法犯認知件数を$crime$ 完全失業者数を$unemp$として
 \\[
 \begin{align}
-\hat{crime_i} = \beta_0 + \beta_1unemp_i + \varepsilon \cr
+crime_i = \beta_0 + \beta_1unemp_i + \varepsilon \cr
 \varepsilon \sim N(0, \sigma^2)
 \end{align}
 \\]
-という線形回帰モデルが予測した$\hat{crime_i}$に対して閾値を設ける。  
-予測値$\hat{crime_i}$が閾値以上なら治安が悪い、閾値未満なら治安が良いと判断する。  
+という線形回帰モデルが予測した値に対して閾値を設ける。  
+予測値が閾値以上なら治安が悪い、閾値未満なら治安が良いと判断する。  
 
 - では閾値はどうやって決めるか？  
     &rarr; 素直に考えれば、0か1かを判断する閾値なので0.5にしたい
-- しかし、予測値$\hat{crime_i}$の範囲は0~1ではない  
+- しかし、予測値の範囲は0~1ではない  
     &rarr; ならば0~1に収めてしまえば良い
 
 ## シグモイド曲線
@@ -666,6 +677,26 @@ S(x) = \frac{1}{1 + e^{-x}} = \frac{e^x}{e^x + 1}
 &rarr; シグモイド関数に突っ込めば、どんな値でも0~1の間に収まる。
 
 ## ロジスティック回帰
+
+乱暴な言い方をすれば、ロジスティック回帰とは線形回帰式の出力にシグモイド関数を噛ませて確率として扱えるようにしたモデル。
+$$
+\begin{align}
+y\in\{0, 1\} \cr
+z = \beta_0 + \beta_1x \cr
+P(Y=y) = \frac{1}{1+e^{-z}}
+\end{align}
+$$
+
+掘下げようとすると一般化線形モデルが出てくるが、時間がないのでその辺りはまた後日。  
+
+- ロジスティック回帰の損失関数
+    - 分類問題なのでLog Loss
+    - $p$を予測確率、$n$をサンプルサイズとする
+$$
+\begin{align}
+J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\Big\{ y_i \log p_i + (1-y_i)\log (1-p_i) \Big\}
+\end{align}
+$$
 
 # 非線形問題
 
@@ -724,39 +755,6 @@ https://www.slideshare.net/HitoshiHabe/ss-58784421
 ### Ordinal エンコーディング
 
 ### Target エンコーディング
-
-## テキスト変数の前処理
-
-### 形態素解析
-
-### Bug of Words
-
-### TF-IDF
-
-### n-gram
-
-### Word2Vec
-
-## 画像データの前処理
-
-### アノテーション
-
-### オーグメンテーション
-
-- 上下左右反転
-- 明るさ、彩度補正
-- 切り抜き
-
-### 正規化
-
-- Min-Max Normalization
-    - 255で割るだけ
-
-## 系列データ・波長データの前処理
-
-### ラグ
-
-### フーリエ変換
 
 # バリデーションスキーム
 
