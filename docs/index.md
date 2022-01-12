@@ -322,10 +322,10 @@ y = ax + b
     - ただし、$\varepsilon \sim N(0, \sigma^2)$は確率変数$\varepsilon$が平均$0$ 分散$\sigma^2$の正規分布に従うことを表す  
     - 確率変数$\varepsilon$は誤差項と呼ばれるが、その意味するところは「予測値と実測値の誤差」ではなく「変数$x$で説明できないその他の要因」  
 $$
-\begin{align*}
+\begin{align}
 y = ax + b + \varepsilon \\
 \varepsilon \sim N(0, \sigma^2)
-\end{align*}
+\end{align}
 $$
 - Box-Jenkins法
     - Box-Jenkins法とは、時系列分析における古典的アプローチを体系化したもの  
@@ -393,10 +393,10 @@ $$
     - 例えば$n$個のサンプルについて変数\\(x, y\\)の実測値を集めたとする
     - $i$番目の実測値\\(y_i\\)の予測値\\(hat{y_i}\\)を、変数\\(x_i\\)とパラメータ\\(\beta_0, \beta_1\\)、確率変数\\(\varepsilon\\)を用いて表す
 $$
-\begin{align*}
+\begin{align}
 \hat{y_i} = \beta_0 + \beta_1x_i + \varepsilon \\
 \varepsilon \sim N(0, \sigma^2)
-\end{align*}
+\end{align}
 $$
 
 ### 損失関数の定義
@@ -404,18 +404,18 @@ $$
 - モデルの形を決めたので、次はモデルに含まれるパラメータを求めたい
     - 歴史的理由から、モデルの形を仮説 (hypothesis) と呼ぶ
 - 良いモデルであれば実測値と予測値の差が小さいはず
-- 従って、次を最小にするようなパラメータ\\(beta_0, \\beta_1)を求めれば良い
+- 従って、次を最小にするようなパラメータ$\beta_0, \beta_1$を求めれば良い
 $$
-\begin{align*}
+\begin{align}
 \frac{1}{n}\sum_{i=1}^{n}(y-\hat{y_i}) = \frac{1}{n}\sum_{i=1}^{n} \{y-(\beta_0 + \beta_1x_i + \varepsilon)\}
-\end{align*}
+\end{align}
 $$
 - 計算を楽にするため両辺2乗したものを平均二乗誤差 (Mean Squared Error; MSE) と呼ぶ
 $$
-\begin{align*}
+\begin{align}
 \frac{1}{n}\sum_{i=1}^{n}(y-\hat{y_i})^2 &= \frac{1}{n}\sum_{i=1}^{n} \{y-(\beta_0 + \beta_1x_i + \varepsilon)\}^2 \\
 &= \frac{1}{n}\sum_{i=1}^{n} (y-\beta_0 - \beta_1x_i)^2
-\end{align*}
+\end{align}
 $$
 - ただし、確率変数\\(\varepsilon\\)は平均$0$なので消える
 - このように最小化したい対象を損失関数 (Loss Function) と呼ぶ
