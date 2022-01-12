@@ -323,7 +323,7 @@ y = ax + b
     - 確率変数$\varepsilon$は誤差項と呼ばれるが、その意味するところは「予測値と実測値の誤差」ではなく「変数$x$で説明できないその他の要因」  
 \\[
 \begin{align}
-y = ax + b + \varepsilon \\
+y = ax + b + \varepsilon\\
 \varepsilon \sim N(0, \sigma^2)
 \end{align}
 \\]
@@ -448,7 +448,7 @@ $$
 - フィッティングのことを学習とも呼ぶ
 
 # 線形回帰
-a
+b
 ## 最小二乗法
 
 ## MSE
