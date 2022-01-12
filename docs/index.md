@@ -414,7 +414,7 @@ y_i = \beta_0 + \beta_1x_i + \varepsilon_i \cr
 - 計算を楽にするため2乗したものを平均二乗誤差 (Mean Squared Error; MSE) と呼ぶ
 \\[
 \begin{align}
-\frac{1}{n}\sum_{i=1}^{n} {y_i-(\beta_0 + \beta_1x_i + \varepsilon_i)}^2 = \frac{1}{n}\sum_{i=1}^{n} (y_i - \beta_0 - \beta_1x_i)^2
+\frac{1}{n}\sum_{i=1}^{n} \{y_i-(\beta_0 + \beta_1x_i + \varepsilon_i)\}^2 = \frac{1}{n}\sum_{i=1}^{n} (y_i - \beta_0 - \beta_1x_i)^2
 \end{align}
 \\]
 - ただし、誤差項\\(\varepsilon_i\\)は平均$0$なので消える
@@ -612,26 +612,26 @@ X^TX\beta = X^Ty
 もう一つの代表的手法が勾配降下法。  
 勾配降下法とは次のような計算を繰り返すことで$J(\beta_0, \beta_1)$を最小にするようなパラメータ$\beta_0, \beta_1$を求めるアルゴリズム。  
 パラメータの数を$j$ 学習率を$\alpha$として  
-$$
+\\[
 \beta_j := \beta_j - \alpha \frac{\partial}{\partial \beta_j} J(\beta_0, \beta_1)
-$$
+\\]
 
 ただし、$:=$は右辺を左辺に代入する演算子。  
 また、$\frac{\partial}{\partial \beta_j} J(\beta_0, \beta_1)$は$J(\beta_0, \beta_1)$の$\beta_j$についての偏微分を表す。  
 各$j$についての偏微分を全て並べたベクトルを勾配と呼ぶ。  
 
-$$
+\\[
 \begin{align}
 J(\beta_0, \beta_1) = \frac{1}{n}\sum_{i=1}^{n} (crime_i - \beta_0 - \beta_1unemp_i)^2
 \end{align}
-$$
+\\]
 具体的に偏微分を計算すると
-$$
+\\[
 \begin{align}
 & \beta_0 := \beta_0 - \alpha \frac{1}{n} \sum_{i=1}^{n}(crime_i-\beta_0-\beta_1unemp_i) \cr
 & \beta_1 := \beta_1 - \alpha \frac{1}{n} \sum_{i=1}^{n}(crime_i-\beta_0-\beta_1unemp_i)unemp_i
 \end{align}
-$$
+\\]
 となるので、これを使ってパラメータの値を更新していいく。
 
 # 分類問題
@@ -679,24 +679,24 @@ S(x) = \frac{1}{1 + e^{-x}} = \frac{e^x}{e^x + 1}
 ## ロジスティック回帰
 
 乱暴な言い方をすれば、ロジスティック回帰とは線形回帰式の出力にシグモイド関数を噛ませて確率として扱えるようにしたモデル。
-$$
+\\[
 \begin{align}
 y\in\{0, 1\} \cr
 z = \beta_0 + \beta_1x \cr
 P(Y=y) = \frac{1}{1+e^{-z}}
 \end{align}
-$$
+\\]
 
 掘下げようとすると一般化線形モデルが出てくるが、時間がないのでその辺りはまた後日。  
 
 - ロジスティック回帰の損失関数
     - 分類問題なのでLog Loss
     - $p$を予測確率、$n$をサンプルサイズとする
-$$
+\\[
 \begin{align}
 J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\Big\{ y_i \log p_i + (1-y_i)\log (1-p_i) \Big\}
 \end{align}
-$$
+\\]
 
 # 非線形問題
 
