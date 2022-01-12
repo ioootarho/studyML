@@ -319,14 +319,14 @@ y = ax + b
 - 統計モデル
     - 統計モデルとは、確率変数を用いて、得られたサンプルデータからその生成過程を表したもの
     - 例えば変数$x, y$とパラメータ$a, b$に加え、確率変数$\varepsilon$を用いた次のモデル  
+    - ただし、$\varepsilon \sim N(0, \sigma^2)$は確率変数$\varepsilon$が平均$0$ 分散$\sigma^2$の正規分布に従うことを表す  
+    - 確率変数$\varepsilon$は誤差項と呼ばれるが、その意味するところは「予測値と実測値の誤差」ではなく「変数$x$で説明できないその他の要因」  
 $$
 \begin{align*}
 y = ax + b + \varepsilon \\
 \varepsilon \sim N(0, \sigma^2)
 \end{align*}
 $$
-    - ただし、$\varepsilon \sim N(0, \sigma^2)$は確率変数$\varepsilon$が平均$0$ 分散$\sigma^2$の正規分布に従うことを表す
-    - 確率変数$\varepsilon$は誤差項と呼ばれるが、その意味するところは「予測値と実測値の誤差」ではなく「変数$x$で説明できないその他の要因」
 - Box-Jenkins法
     - Box-Jenkins法とは、時系列分析における古典的アプローチを体系化したもの  
     - 所謂ARIMAモデルやその発展モデル
