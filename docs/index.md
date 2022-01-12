@@ -323,7 +323,7 @@ y = ax + b
     - 確率変数$\varepsilon$は誤差項と呼ばれるが、その意味するところは「予測値と実測値の誤差」ではなく「変数$x$で説明できないその他の要因」  
 \\[
 \begin{align}
-y = ax + b + \varepsilon\\
+y = ax + b + \varepsilon\\\\
 \varepsilon \sim N(0, \sigma^2)
 \end{align}
 \\]
@@ -392,12 +392,12 @@ y = ax + b + \varepsilon\\
     - 特徴量とターゲットの関係について仮説を立てる
     - 例えば$n$個のサンプルについて変数\\(x, y\\)の実測値を集めたとする
     - $i$番目の実測値\\(y_i\\)の予測値\\(\hat{y_i}\\)を、変数\\(x_i\\)とパラメータ\\(\beta_0, \beta_1\\)、確率変数\\(\varepsilon\\)を用いて表す  
-$$
+\\[
 \begin{align}
-\hat{y_i} = \beta_0 + \beta_1x_i + \varepsilon \\
+\hat{y_i} = \beta_0 + \beta_1x_i + \varepsilon\cr
 \varepsilon \sim N(0, \sigma^2)
 \end{align}
-$$
+\\]
 
 ### 損失関数の定義
 
@@ -448,7 +448,7 @@ $$
 - フィッティングのことを学習とも呼ぶ
 
 # 線形回帰
-c
+d
 ## 最小二乗法
 
 ## MSE
