@@ -124,10 +124,18 @@ AIの分類に関するもうひとつの議論が「汎用型AI」と「特異�
 
 ![Figure 2 出典：DataRobot AI Experience 2017 https://www.youtube.com/watch?v=ZChA63CpX5o](./figures/TypicalExplanation.png)
 
+<div style="text-align: right;">
+出典：DataRobot AI Experience 2017 https://www.youtube.com/watch?v=ZChA63CpX5o
+</div>
+
 しかし、AIと機械学習の関係も明確な定義は定まっていない。  
 例えばDataRobot 創業者のJeremy Achin は次のように定義している。  
 
 ![Figure 3 出典：DataRobot AI Experience 2017 https://www.youtube.com/watch?v=ZChA63CpX5o](./figures/JeremysExplanation.png)
+
+<div style="text-align: right;">
+出典：DataRobot AI Experience 2017 https://www.youtube.com/watch?v=ZChA63CpX5o
+</div>
 
 少なくとも言えることは以下２つ。
 - AIを実現する手法の1つが機械学習だということ  
@@ -147,9 +155,11 @@ AIの分類に関するもうひとつの議論が「汎用型AI」と「特異�
     - ダートマス会議
 - 中心技術
     - 探索木
-        - 記号主義者によるルールーベース
+        - 原始的な決定木
+        - 記号主義者
     - 単純パーセプトロン
-        - コネクショニストによるニューラルネットワーク
+        - 超初期のニューラルネットワーク
+        - コネクショニスト
 - ブームの終わり
     - 探索木では迷路やパズルなど特定の問題しか解けない  
         &rarr; 現実的な問題は解けない
@@ -201,7 +211,10 @@ AIの分類に関するもうひとつの議論が「汎用型AI」と「特異�
         - 自ら特徴を見つける表現学習 (representation learning/feature learning)
 - 中心技術
     - ディープラーニング
-        - コネクショニストによる多層パーセプトロン
+        - オートエンコーダによる表現学習
+            - 自ら特徴を見つけて学習する
+        - 多層パーセプトロン
+        - コネクショニスト
 - 火付け役
     - AlexNet (2012)
     - Googleの猫 (2012)
@@ -244,6 +257,9 @@ AIの分類に関するもうひとつの議論が「汎用型AI」と「特異�
 - 手法
     - 決定木
     - ツリー系アルゴリズム
+        - XGBoost
+        - LightGBM
+        - CatBoost
 - 活躍分野
     - テーブルデータのパターン認識
         - 分類問題
@@ -282,8 +298,6 @@ AIの分類に関するもうひとつの議論が「汎用型AI」と「特異�
     - AlexNet以前の画像認識
     - XGBoost以前のテーブルデータのパターン認識
     - アンサンブルモデルの素材
-
-## 閑話休題：頻度主義とベイズ主義
 
 # モデルとは
 
@@ -329,15 +343,15 @@ y = ax + b
             &rarr; 人口の変化率はその時点での人口に比例するはず
 - 統計モデル
     - 統計モデルとは、確率変数を用いて、得られたサンプルデータからその生成過程を表したもの
-    - 例えば変数$x, y$とパラメータ$a, b$に加え、確率変数$\varepsilon$を用いた次のモデル  
-    - ただし、$\varepsilon \sim N(0, \sigma^2)$は確率変数$\varepsilon$が平均$0$ 分散$\sigma^2$の正規分布に従うことを表す  
-    - 確率変数$\varepsilon$は誤差項と呼ばれるが、その意味するところは「予測値と実測値の誤差」ではなく「変数$x$で説明できないその他の要因」  
+    - 例えば変数$x, y$とパラメータ$a, b$に加え、確率変数$\varepsilon$を用いた次のモデル    
 \\[
 \begin{align}
 y = ax + b + \varepsilon \cr
 \varepsilon \sim N(0, \sigma^2)
 \end{align}
 \\]
+    - ただし、$\varepsilon \sim N(0, \sigma^2)$は確率変数$\varepsilon$が平均$0$ 分散$\sigma^2$の正規分布に従うことを表す  
+    - 確率変数$\varepsilon$は誤差項と呼ばれるが、その意味するところは「予測値と実測値の差」ではなく「変数$x$で説明できないその他の要因」
 - Box-Jenkins法
     - Box-Jenkins法とは、時系列分析における古典的アプローチを体系化したもの  
     - 所謂ARIMAモデルやその発展モデル
@@ -398,6 +412,7 @@ y = ax + b + \varepsilon \cr
 - 特徴量エンジニアリング
     - 今ある特徴量から新しい特徴量を作り出すこと
         - 特徴量同士の積
+        - EDAで見つけたインサイトを盛り込む
         - ドメイン知識を基にフラグを立てる
 - 仮説構築
     - 特徴量とターゲットの関係について仮説を立てる
@@ -809,10 +824,12 @@ https://www.slideshare.net/HitoshiHabe/ss-58784421
 
 # 参考文献
 
-- Poole, D., Mackworth A. and Goebel R. (1998). *Computational Intelligence: A Logical Approach*, New York: Oxford University Press.
-- Mitchell, T. (1997). *Machine Learning*, New York: McGraw Hill.
-- ペドロ・ミンゴス著, 神嶌敏弘訳 (2021). *マスターアルゴリズム：世界を再構築する「究極の機械学習」*, 講談社
-- 松尾豊 (2015). *人工知能は人間を超えるか：ディープラーニングの先にあるもの*, KADOKAWA
-- Searle, John. R. (1980). *Minds, brains, and programs*, Behavioral and Brain Sciences 3 (3), pp.417-457
-- Russell, S. and Norvig, P. (2003). *Artificial Intelligence: A Modern Approach*, Upper Saddle River, New Jersey: Prentice Hall.
-- 江崎貴裕 (2020). *データ分析のための数理モデル入門：本質をとらえた分析のために*, ソシム
+- D. Poole, A. Mackworth and R. Goebel (1998) "Computational Intelligence: A Logical Approach", New York: Oxford University Press.
+- T. Mitchell, (1997) "Machine Learning", New York: McGraw Hill.
+- ペドロ・ミンゴス著, 神嶌敏弘訳 (2021). "マスターアルゴリズム：世界を再構築する「究極の機械学習」", 講談社
+- 松尾豊 (2015) "人工知能は人間を超えるか：ディープラーニングの先にあるもの", KADOKAWA
+- John. R. Searle, (1980) "Minds, brains, and programs", Behavioral and Brain Sciences 3 (3), pp.417-457
+- S. Russell and P. Norvig, (2003) "Artificial Intelligence: A Modern Approach", Upper Saddle River, New Jersey: Prentice Hall.
+- 江崎貴裕 (2020) "データ分析のための数理モデル入門：本質をとらえた分析のために", ソシム
+- 竹村彰通 (2020) "新装改訂版 現代数理統計学", 学術図書
+- 加藤公一 (2018) "機械学習のエッセンス", SBクリエイティブ
