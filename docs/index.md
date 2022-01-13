@@ -648,34 +648,35 @@ X^TX\beta = X^Ty
 
 直感的説明は以下の通り。
 
-- 仮に損失関数がこのような形をしていたとする
-![Figure 6 QuadraticFunction](./figures/QuadraticFunction.png)
+- 仮に損失関数がこのような形をしていたとする  
+![Figure 6 QuadraticFunction](./figures/QuadraticFunction.png)  
 - 損失関数が最小値をとるのは$\beta=0$のときで一目瞭然
 - この損失関数を谷に見立てる
 - 谷の斜面から一歩一歩下っていけば、いつか必ず谷の底に着くはず
 - 下るときの一歩の歩幅が学習率$\alpha$
-- 下ることがパラメータ$\beta_0, \beta_1$の更新
+- 合計何歩下るかの最大歩数が繰り返し数  
+&rarr; 下ることをパラメータ$\beta_0, \beta_1$の更新に例えている
 
 実際に歩幅を変えながら下ってみる。
 
-- 学習率$\alpha=0.1$で下っていったときの軌跡
-![Figure 7 GradientDescent0.1](./figures/GradientDescent_alpha0.1.png)
+- 学習率$\alpha=0.1$で下っていったときの軌跡  
+![Figure 7 GradientDescent0.1](./figures/GradientDescent_alpha0.1.png)  
 - 学習率$\alpha=0.3$で下っていったときの軌跡  
-&rarr; 歩幅が大きくなったので早く谷の底に着く
-![Figure 8 GradientDescent0.3](./figures/GradientDescent_alpha0.3.png)
+&rarr; 歩幅が大きくなったので早く谷の底に着く  
+![Figure 8 GradientDescent0.3](./figures/GradientDescent_alpha0.3.png)  
 - 学習率$\alpha=0.5$で下っていったときの軌跡  
-&rarr; 歩幅が更に大きくなったので一歩で谷の底に着く
-![Figure 9 GradientDescent0.5](./figures/GradientDescent_alpha0.5.png)
+&rarr; 歩幅が更に大きくなったので一歩で谷の底に着く  
+![Figure 9 GradientDescent0.5](./figures/GradientDescent_alpha0.5.png)  
 - 学習率$\alpha=0.8$で下っていったときの軌跡  
-&rarr; 歩幅が大きくなりすぎて谷の底を跨ぎつつも、最終的には何とか谷の底に着く
-![Figure 10 GradientDescent0.8](./figures/GradientDescent_alpha0.8.png)
+&rarr; 歩幅が大きくなりすぎて谷の底を跨ぎつつも、最終的には何とか谷の底に着く  
+![Figure 10 GradientDescent0.8](./figures/GradientDescent_alpha0.8.png)  
 - 学習率$\alpha=1.0$で下っていったときの軌跡  
-&rarr; 歩幅が完全に大きくなりすぎて、反対斜面との間を行ったり来たりしかできない
-![Figure 11 GradientDescent1.0](./figures/GradientDescent_alpha1.0.png)
+&rarr; 歩幅が完全に大きくなりすぎて、反対斜面との間を行ったり来たりしかできない  
+![Figure 11 GradientDescent1.0](./figures/GradientDescent_alpha1.0.png)  
 - 学習率$\alpha=1.0001$で下っていったときの軌跡  
 &rarr; 足がデカすぎて谷の底へ行けない、歩けば歩くほど谷の上へ行ってしまう  
 &rarr; 「発散」と呼ばれる状態  
-![Figure 12 GradientDescent1.0001](./figures/GradientDescent_alpha1.0001.png)
+![Figure 12 GradientDescent1.0001](./figures/GradientDescent_alpha1.0001.png)  
 
 きちんと計算するためには損失関数の偏微分を求める。  
 損失関数
@@ -753,7 +754,7 @@ P(Y=y) = \frac{1}{1+e^{-z}}
     - $p$を予測確率、$n$をサンプルサイズとする
 \\[
 \begin{align}
-J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\{ y_i \log p_i + (1-y_i)\log (1-p_i)\}
+J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 \end{align}
 \\]
 
