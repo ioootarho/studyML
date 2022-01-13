@@ -326,6 +326,7 @@ AIの分類に関するもうひとつの議論が「汎用型AI」と「特異�
 y = ax + b
 \\]
     - この式において、$x$を説明変数もしくは独立変数といい、$y$を被説明変数もしくは目的変数という
+    - 特に機械学習の文脈では説明変数のことを特徴量、被説明変数のことをターゲットと呼ぶ
 - 微分方程式
     - 微分の復習
       - 微分とは変数$x$が変化したときの関数$f(x)$の変化率
@@ -577,7 +578,7 @@ y = X\beta + \varepsilon \cr
 \varepsilon \sim N_n(0, \sigma^2I_n)
 \end{align}
 \\]
-このときの$X$を説明変数行列行列または計画行列、 $y$を目的変数ベクトルまたはターゲットベクトル、$\beta$を回帰係数ベクトルまたはパラメータベクトルと呼ぶ。  
+このときの$X$を説明変数行列または計画行列、 $y$を目的変数ベクトルまたはターゲットベクトル、$\beta$を回帰係数ベクトルまたはパラメータベクトルと呼ぶ。  
 
 次に最小化したい損失関数も行列表記する。  
 \\[
@@ -635,8 +636,8 @@ X^TX\beta = X^Ty
 ## 勾配降下法
 
 もう一つの代表的手法が勾配降下法。  
-勾配降下法とは次のような計算を繰り返すことで$J(\beta_0, \beta_1)$を最小にするようなパラメータ$\beta_0, \beta_1$を求めるアルゴリズム。  
-パラメータの数を$j$ 学習率を$\alpha$として  
+勾配降下法とは次のような計算を繰り返してパラメータ$\beta_0, \beta_1$を更新することで、$J(\beta_0, \beta_1)$を最小にするようなパラメータ$\beta_0, \beta_1$を探し出すアルゴリズム。  
+パラメータの数を$j$、学習率を$\alpha$として  
 \\[
 \beta_j := \beta_j - \alpha \frac{\partial}{\partial \beta_j} J(\beta_0, \beta_1)
 \\]
@@ -645,8 +646,36 @@ X^TX\beta = X^Ty
 また、$\frac{\partial}{\partial \beta_j} J(\beta_0, \beta_1)$は$J(\beta_0, \beta_1)$の$\beta_j$についての偏微分を表す。  
 各$j$についての偏微分を全て並べたベクトルを勾配と呼ぶ。  
 
-![Figure 6 PolynomialFunction](./figures/PolynomialFunction.png)
+直感的説明は以下の通り。
+- 仮に損失関数がこのような形をしていたとする
+![Figure 6 QuadraticFunction](./figures/QuadraticFunction.png)
+- 損失関数が最小値をとるのは$\beta=0$のときで一目瞭然
+- この損失関数を谷に見立てる
+- 谷の斜面から一歩一歩下っていけば、いつか必ず谷の底に着くはず
+- 下るときの一歩の歩幅が学習率$\alpha$
+- 下ることがパラメータ$\beta_0, \beta_1$の更新
 
+実際に歩幅を変えながら下ってみる。
+- 学習率$\alpha=0.1$で下っていったときの軌跡
+![Figure 7 GradientDescent0.1](./figures/GradientDescent_alpha0.1.png)
+- 学習率$\alpha=0.3$で下っていったときの軌跡  
+&rarr; 歩幅が大きくなったので早く谷の底に着く
+![Figure 8 GradientDescent0.3](./figures/GradientDescent_alpha0.3.png)
+- 学習率$\alpha=0.5$で下っていったときの軌跡  
+&rarr; 歩幅が更に大きくなったので一歩で谷の底に着く
+![Figure 9 GradientDescent0.5](./figures/GradientDescent_alpha0.5.png)
+- 学習率$\alpha=0.8$で下っていったときの軌跡  
+&rarr; 歩幅が大きくなりすぎて谷の底を跨ぎつつも、最終的には何とか谷の底に着く
+![Figure 10 GradientDescent0.8](./figures/GradientDescent_alpha0.8.png)
+- 学習率$\alpha=1.0$で下っていったときの軌跡  
+&rarr; 歩幅が完全に大きくなりすぎて、反対斜面との間を行ったり来たりしかできない
+![Figure 11 GradientDescent1.0](./figures/GradientDescent_alpha1.0.png)
+- 学習率$\alpha=1.0001$で下っていったときの軌跡  
+&rarr; 足がデカすぎて谷の底へ行けない、歩けば歩くほど谷の上へ行ってしまう  
+&rarr; 「発散」と呼ばれる状態  
+![Figure 12 GradientDescent1.0001](./figures/GradientDescent_alpha1.0001.png)
+
+きちんと計算するためには損失関数の偏微分を求める。  
 損失関数
 \\[
 \begin{align}
@@ -660,7 +689,7 @@ J(\beta_0, \beta_1) = \frac{1}{n}\sum_{i=1}^{n} (crime_i - \beta_0 - \beta_1unem
 & \beta_1 := \beta_1 - \alpha \frac{1}{n} \sum_{i=1}^{n}(crime_i-\beta_0-\beta_1unemp_i)unemp_i
 \end{align}
 \\]
-となるので、これを使ってパラメータの値を更新していいく。
+となるので、これを使ってパラメータ$\beta_0, \beta_1$の値を更新していく。
 
 # 分類問題
 
