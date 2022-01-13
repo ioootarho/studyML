@@ -1,2 +1,2 @@
 # studyML
-materials to study ML
+https://suchu3.github.io/studyML/ のリポジトリ
