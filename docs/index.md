@@ -646,7 +646,7 @@ X^TX\beta = X^Ty
 また、$\frac{\partial}{\partial \beta_j} J(\beta_0, \beta_1)$は$J(\beta_0, \beta_1)$の$\beta_j$についての偏微分を表す。  
 各$j$についての偏微分を全て並べたベクトルを勾配と呼ぶ。  
 
-直感的説明は以下の通り。
+直感的説明は以下の通り。  
 
 - 仮に損失関数がこのような形をしていたとする
 ![Figure 6 QuadraticFunction](./figures/QuadraticFunction.png)
@@ -656,7 +656,7 @@ X^TX\beta = X^Ty
 - 下るときの一歩の歩幅が学習率$\alpha$
 - 下ることがパラメータ$\beta_0, \beta_1$の更新
 
-実際に歩幅を変えながら下ってみる。
+実際に歩幅を変えながら下ってみる。  
 
 - 学習率$\alpha=0.1$で下っていったときの軌跡
 ![Figure 7 GradientDescent0.1](./figures/GradientDescent_alpha0.1.png)
