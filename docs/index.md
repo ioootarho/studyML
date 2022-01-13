@@ -647,6 +647,7 @@ X^TX\beta = X^Ty
 各$j$についての偏微分を全て並べたベクトルを勾配と呼ぶ。  
 
 直感的説明は以下の通り。
+
 - 仮に損失関数がこのような形をしていたとする
 ![Figure 6 QuadraticFunction](./figures/QuadraticFunction.png)
 - 損失関数が最小値をとるのは$\beta=0$のときで一目瞭然
@@ -656,6 +657,7 @@ X^TX\beta = X^Ty
 - 下ることがパラメータ$\beta_0, \beta_1$の更新
 
 実際に歩幅を変えながら下ってみる。
+
 - 学習率$\alpha=0.1$で下っていったときの軌跡
 ![Figure 7 GradientDescent0.1](./figures/GradientDescent_alpha0.1.png)
 - 学習率$\alpha=0.3$で下っていったときの軌跡  
@@ -751,7 +753,7 @@ P(Y=y) = \frac{1}{1+e^{-z}}
     - $p$を予測確率、$n$をサンプルサイズとする
 \\[
 \begin{align}
-J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\Big\{ y_i \log p_i + (1-y_i)\log (1-p_i) \Big\}
+J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\{ y_i \log p_i + (1-y_i)\log (1-p_i)\}
 \end{align}
 \\]
 
