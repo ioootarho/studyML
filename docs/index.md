@@ -755,7 +755,7 @@ crime_i = \beta_0 + \beta_1unemp_i + \varepsilon \cr
 ![Figure 17 CrimeFlagVsUnemployeeExcluded](./figures/CrimeFlagVsUnemployeeExcluded.png)  
 
 この状態で線形回帰を適用すると、決定境界の青い点線が簡単に左にズレる。  
-![Figure 16 ClassifiedByLinerRegressionModelExcluded](./figures/ClassifiedByLinerRegressionModelExcluded.png)  
+![Figure 18 ClassifiedByLinerRegressionModelExcluded](./figures/ClassifiedByLinerRegressionModelExcluded.png)  
 
 &rarr; 分類問題を解くためには、線形回帰ではない別の方法が必要。
 
@@ -763,7 +763,7 @@ crime_i = \beta_0 + \beta_1unemp_i + \varepsilon \cr
 
 分類問題を解くときに頻出するのがシグモイド曲線。  
 シグモイド曲線とは必ず0~1の間に収まる魔法の曲線。  
-![Figure 6 シグモイド曲線](./figures/SigmoidFunction.png)
+![Figure 19 SigmoidFunction](./figures/SigmoidFunction.png)
 
 この曲線を描く式は次の関数で定義される。  
 \\[
@@ -785,7 +785,9 @@ P(Y=y) = \frac{1}{1+e^{-z}}
 \end{align}
 \\]
 
-ただし、$y$は$0$か$1$の値をとる確率変数で、$Y$はその実現値とする。$P(Y=0)$は確率変数$y$が$0$をとる確率、$P(Y=1)$は確率変数$y$が$1$をとる確率を表す。そして、これらをまとめて確率変数$y$の関数として表記したものを確率関数と呼び、$p(y)=P(Y=y)$と表記する。  
+ただし、$y$は$0$か$1$の値をとる確率変数で、$Y$はその実現値とする。  
+$P(Y=0)$は確率変数$y$が$0$をとる確率、$P(Y=1)$は確率変数$y$が$1$をとる確率を表す。  
+そして、これらをまとめて確率変数$y$の関数として表記したものを確率関数と呼び、$p(y)=P(Y=y)$と表記する。  
 &rarr; ロジスティック回帰は確率を扱える
 
 - 理論面を掘り下げようとすると一般化線形モデルが出てくるが、時間がないのでその辺りはまた後日  
@@ -832,13 +834,79 @@ J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 
 ## 線形とは
 
-## 非線形問題の主な対応方法
+今までさり気なく使っていた「線形」という言葉の意味を定義する。  
+なお、「線型」と書かれることもあるが意味は同じで、どちらもlinearの訳語。  
+どちらの漢字を使うかはその人の趣味や思想による。  
 
-### 非線形関数を用いる
+- 線形とは線形性のこと  
 
-### 関数を合成する
+線形性の定義は以下の通り。  
+- $\alpha$を任意の定数として関数$y=f(x)$が以下を満たすとき、関数$y=f(x)$は線形性を持つ  
+    - $f(x_1+x_2) = f(x_1)+f(x_2)$  
+    - $f(\alpha x) = \alpha f(x)$  
 
-### そもそも関数近似しない
+&rarr; 足し算、引き算、定数倍だけで定義できるかどうか。  
+
+例えばこんな関数。  
+$y=2x+1$  
+&rarr; 足し算と定数倍で定義されている
+![Figure 20 LinearFunction](./figures/LinearFunction.png)  
+
+足し算、引き算、定数倍だけでは定義できないものは非線形。  
+例えばこんな関数。  
+$y=2x^2+1$  
+&rarr; 変数同士の掛け算を使って定義されている  
+![Figure 21 NonLinearFunction](./figures/NonLinearFunction.png)  
+
+## 非線形問題
+
+例えばこんな3列構成のデータセットが2つあったとする。  
+- １列目：feature #0
+- ２列目：feature #1
+- ３列目：target (0 or 1)
+- サンプルサイズ：2,000
+
+![Figure 22 NonLinearData](./figures/NonLinearData.png)  
+
+- データセットA  
+    - 直線を1本引けば0と1を分離できそう  
+        &rarr; 線形分離可能
+- データセットB
+    - どんな直線を引いても1本では0と1を分離できなさそう  
+        &rarr; 線形分離不可能  
+        &rarr; 非線形問題
+
+分類結果は以下の通り。  
+ただし、2,000サンプルを6:4で分割し、前者で学習、後者でテストを行っている。  
+各プロット右下の数字はテスト結果のAccuracyを記載している。  
+![Figure 23 NonLinearProblem](./figures/NonLinearProblem.png)  
+
+## 非線形問題への対応
+
+データセットBを分類しようと思ったときに、よくある対応方法は以下の通り。  
+- 非線形関数で当てはめる  
+    - データセットBに対して$ax^2+by^2=0$というモデルの形を仮定する
+- 非線形関数を噛ませて線形関数を合成する
+    - 2つの線形関数を合成する
+        - $f(x)=ax+b$
+        - $g(x)=cx+d$  
+            &rarr; $f(g(x)) = f(cx+d) = acx+ad+b$  
+            &rarr; これだけだと合成後も線形関数  
+    - 線形関数の出力に非線形関数を噛ませてから合成する
+        - $f(x)=ax+b$
+        - $g(x)=cx+d$
+        - $S(x)=\frac{1}{1+e^{-x}}$  
+            &rarr; $Z=S(f(x))=\frac{1}{1+e^{-(ax+b)}}$  
+            &rarr; $g(Z)=cZ+d=\frac{c}{1+e^{-(ax+b)}}+d$
+            &rarr; 一気に複雑な非線形関数ができた  
+    - これを延々繰り返すのがニューラルネットワーク
+- そもそも関数近似しない  
+    - 決定木  
+        &rarr; 条件分岐
+- 確率を考える
+    - ナイーブベイズ  
+- カーネルトリック
+    - サポートベクターマシン  
 
 # ディープラーニングさわり
 
