@@ -830,6 +830,8 @@ J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 \end{align}
 \\]
 
+この損失関数を最小にするようなパラメータを勾配降下法で求める。
+
 # 非線形問題
 
 ## 線形とは
@@ -857,6 +859,14 @@ $y=2x+1$
 $y=2x^2+1$  
 &rarr; 変数同士の掛け算を使って定義されている  
 ![Figure 21 NonLinearFunction](./figures/NonLinearFunction.png)  
+
+- 注意
+    - 以下のようなモデルも線形モデルと呼ばれる
+        - $y=\beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_1x_2$
+        - $y=\beta_0 + \beta_1x_1 + \beta_2x_1^2$
+    - 確かに変数$x$視点で見れば掛け算が入っているので非線形
+    - 一方、パラメータ$\beta$視点で見れば足し算と定数倍だけなので線形  
+        &rarr; なので線形モデル
 
 ## 非線形問題
 
@@ -897,30 +907,69 @@ $y=2x^2+1$
         - $g(x)=cx+d$
         - $S(x)=\frac{1}{1+e^{-x}}$  
             &rarr; $Z=S(f(x))=\frac{1}{1+e^{-(ax+b)}}$  
-            &rarr; $g(Z)=cZ+d=\frac{c}{1+e^{-(ax+b)}}+d$
+            &rarr; $g(Z)=cZ+d=\frac{c}{1+e^{-(ax+b)}}+d$  
             &rarr; 一気に複雑な非線形関数ができた  
     - これを延々繰り返すのがニューラルネットワーク
 - そもそも関数近似しない  
     - 決定木  
         &rarr; 条件分岐
-- 確率を考える
+- 確率分布を考える
     - ナイーブベイズ  
+- 距離が近いもの同士でまとめる
+    - k-近傍法
 - カーネルトリック
     - サポートベクターマシン  
 
 # ディープラーニングさわり
 
-## ディープラーニングの歴史
+## ニューラルネットワーク
+
+ディープラーニングとは隠れ層を数十〜数百に深くしたニューラルネットワークのこと。  
+単純に深くしただけだと様々な問題が出てくるので、色々と工夫されている。  
+![Figure 24 SimpleVsDeep](./figures/SimpleVsDeep.png)  
 
 ## なぜディープラーニングが注目されているのか
 
-## ディープラーニングの活躍分野
+- 表現学習
+    - 特徴量エンジニアリングで人が特徴量を作り出さなくても良い  
+![Figure 25 MLvsDL](./figures/MLvsDL.jpeg)  
+    - ディープラーニングは自ら特徴を学習することができる
+![Figure 26 RepresentationLearning](./figures/RepresentationLearning.png)  
 
-# ツリー系アルゴリズム概論
+- 非構造データに強い  
+![Figure 27 KaggleCompe](./figures/KaggleCompe.png)  
+![Figure 28 KaggleNonStracture](./figures/KaggleNonStracture.png)  
+![Figure 29 KaggleSemistracture](./figures/KaggleSemistracture.png)  
+![Figure 30 KaggleStracture](./figures/KaggleStracture.png)  
+<div style="text-align: right;">
+出典：DataRobot Community [アーカイブ] DL入門とDataRobot Visual Artificial Intelligence(AI)
+</div>
+
+## 有名なネットワーク
+
+- FNN (Feed-forward Neural Network)
+- RNN (Recurrent Neural Network)
+    - LSTM (Long Short Term Memory)
+    - GRU (Gated Reccurent Unit)
+![Figure 31 RNNvsLSTMvsGRU](./figures/RNNvsLSTMvsGRU.png)  
+- CNN (Convolutional Neural Network)
+![Figure 31 CNN](./figures/CNN.jpeg)  
+    - ResNet
+![Figure 32 Resnet_architecture](./figures/Resnet_architecture.png)  
+
+# ツリー系アルゴリズム
+
+ツリー系アルゴリズムとは決定木をベースにしたアルゴリズムの総称。
 
 ## 決定木
 
 ## アンサンブル
+
+主要なアンサンブル手法は以下の4つ
+- Averaging
+- Stacking
+- Boosting
+- Bagging
 
 ## 主要なツリー系アルゴリズム
 
@@ -930,7 +979,7 @@ https://www.slideshare.net/HitoshiHabe/ss-58784421
 
 ### 勾配ブースト木
 
-### eXGBoost
+### XGBoost
 
 ### LightGBM
 
@@ -995,12 +1044,13 @@ https://www.slideshare.net/HitoshiHabe/ss-58784421
 # 参考文献
 
 - D. Poole, A. Mackworth and R. Goebel (1998) "Computational Intelligence: A Logical Approach", New York: Oxford University Press.
-- T. Mitchell, (1997) "Machine Learning", New York: McGraw Hill.
-- ペドロ・ミンゴス著, 神嶌敏弘訳 (2021). "マスターアルゴリズム：世界を再構築する「究極の機械学習」", 講談社
+- T. Mitchell (1997) "Machine Learning", New York: McGraw Hill.
+- ペドロ・ミンゴス著, 神嶌敏弘訳 (2021) "マスターアルゴリズム：世界を再構築する「究極の機械学習」", 講談社
 - 松尾豊 (2015) "人工知能は人間を超えるか：ディープラーニングの先にあるもの", KADOKAWA
-- John. R. Searle, (1980) "Minds, brains, and programs", Behavioral and Brain Sciences 3 (3), pp.417-457
-- S. Russell and P. Norvig, (2003) "Artificial Intelligence: A Modern Approach", Upper Saddle River, New Jersey: Prentice Hall.
+- John. R. Searle (1980) "Minds, brains, and programs", Behavioral and Brain Sciences 3 (3), pp.417-457
+- S. Russell and P. Norvig (2003) "Artificial Intelligence: A Modern Approach", Upper Saddle River, New Jersey: Prentice Hall.
 - 江崎貴裕 (2020) "データ分析のための数理モデル入門：本質をとらえた分析のために", ソシム
 - 竹村彰通 (2020) "新装改訂版 現代数理統計学", 学術図書
 - 加藤公一 (2018) "機械学習のエッセンス", SBクリエイティブ
 - 久保拓弥 (2012) "データ解析のための統計モデリング入門：一般化線形モデル・階層ベイズモデル・MCMC", 岩波書店
+- 荒木修・齋藤智彦 (2016) "本質から理解する 数学的手法", 裳華房
