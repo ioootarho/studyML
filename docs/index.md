@@ -930,16 +930,16 @@ $y=2x^2+1$
 
 ## なぜディープラーニングが注目されているのか
 
-- 表現学習
+- 表現学習 (Representation Learning)
     - 特徴量エンジニアリングで人が特徴量を作り出さなくても良い  
 ![Figure 25 MLvsDL](./figures/MLvsDL.jpeg)  
     - ディープラーニングは自ら特徴を学習することができる
 ![Figure 26 RepresentationLearning](./figures/RepresentationLearning.png)  
 
-- 非構造データに強い  
+- 非構造化データに強い  
 ![Figure 27 KaggleCompe](./figures/KaggleCompe.png)  
 ![Figure 28 KaggleNonStracture](./figures/KaggleNonStracture.png)  
-![Figure 29 KaggleSemistracture](./figures/KaggleSemistracture.png)  
+![Figure 29 KaggleSemistracture](./figures/KaggleSemiStracture.png)  
 ![Figure 30 KaggleStracture](./figures/KaggleStracture.png)  
 <div style="text-align: right;">
 出典：DataRobot Community [アーカイブ] DL入門とDataRobot Visual Artificial Intelligence(AI)
@@ -954,22 +954,89 @@ $y=2x^2+1$
 ![Figure 31 RNNvsLSTMvsGRU](./figures/RNNvsLSTMvsGRU.png)  
 - CNN (Convolutional Neural Network)
 ![Figure 31 CNN](./figures/CNN.jpeg)  
-    - ResNet
+    - ResNet  
 ![Figure 32 Resnet_architecture](./figures/Resnet_architecture.png)  
+<div style="text-align: right;">
+出典：He et al (2015) "Deep Residual Learning for Image Recognition"
+</div>
 
 # ツリー系アルゴリズム
 
-ツリー系アルゴリズムとは決定木をベースにしたアルゴリズムの総称。
+ツリー系アルゴリズムとは決定木をベースにしたアルゴリズムの総称。  
+ディープラーニングとは対照的に構造化データに強い。
 
 ## 決定木
 
+決定木 (Decision Tree) とは、以下3種類のアルゴリズムの総称。  
+- CART
+- CHAID
+- ID3 &rarr; C4.5 &rarr; C5.0  
+
+いずれも次のような樹形図を描くので、決定木と呼ばれる。  
+![Figure 33 DecisionTree](./figures/DecisionTree.png)  
+<div style="text-align: right;">
+出典：https://github.com/rasbt/python-machine-learning-book-2nd-edition/blob/master/code/ch03/images/03_21.png
+</div>
+
+3種類のアルゴリズムの比較は以下の通り。  
+![Figure 34 DecisionTreeDIff](./figures/DecisionTreeDiff.png)  
+<div style="text-align: right;">
+出典：http://www.analyticsdlab.co.jp/column/decisiontree.html
+</div>
+
+- よく使われるのはCART
+    - カテゴリ変数・連続変数を気にしなくて良い
+    - 2分岐なので計算が速い
+
 ## アンサンブル
 
-主要なアンサンブル手法は以下の4つ
-- Averaging
-- Stacking
-- Boosting
-- Bagging
+アンサンブル (Ensemble) とは複数のモデルを組み合わせる手法。  
+- 弱学習器
+    - 組み合わせる個々のモデル
+    - アンサンブル素材
+- 強学習器
+    - 組み合わせた結果のモデル全体のこと
+    - 最終的な出力を行う  
+
+組み合わせ方によって、大きく以下5通りに分けられる。  
+- Voting  (Hard Voting)  
+    &rarr; 多数決をとる
+    - 元のデータセットから複数の弱学習器を作る
+    - 弱学習器の出力の多数決で最終的な出力を決める  
+- Averaging  (Soft Voting)  
+    &rarr; 平均をとる
+    - 元のデータセットから複数の弱学習器を作る
+    - 弱学習器の出力の平均を最終的な出力とする  
+        &rarr; 弱学習器に多様性があった方が最終的な出力は良くなる
+- Stacking  
+    &rarr; 部下が上申して決裁者が意思決定する
+    - 元のデータセットから複数の弱学習器を作る
+    - 弱学習器の出力を特徴量として機械学習モデルを作る
+    - その出力を最終的な出力とする
+- Bagging (Bootstrap Aggrigating)  
+    &rarr; サンプリングして大量にデータセット増やす
+    - 元のデータセットから重複を許して復元抽出により大量のデータセットを作る
+    - 各データセットにつき1つの弱学習器を作る
+    - 弱学習器の出力を平均して最終的な出力とする  
+        &rarr; ブートストラップ平均でバリアンス抑える効果がある
+- Boosting  
+    &rarr; 間違えたところを重点的に復習する  
+    - 復習の仕方で異なる2種類の実装方法
+        - AdaBoost (Adaptive Boost)  
+            - 元のデータセットから1つ目の弱学習器を作る
+            - 1つ目の弱学習器が誤分類したサンプルだけ抽出して2つ目の弱学習器を作る
+            - 2つ目の弱学習器が誤分類したサンプルだけ抽出して3つ目の弱学習器を作る
+            - これを延々繰り返す
+            - 各弱学習器の出力の重み付き和を最終的な出力とする
+        - 勾配ブースティング (Gradient Boosting)
+            - 元のデータセットから1つ目の弱学習器を作る
+            - 1つ目の弱学習器の出力の残差を計算する
+            - 元のデータセットの特徴量を用いて、1つ目の弱学習器の残差をターゲットにして2つ目の弱学習器を作る
+            - 2つ目の弱学習器の残差を計算する
+            - 元のデータセットの特徴量を用いて、2つ目の弱学習器の残差をターゲットにして3つ目の弱学習器を作る
+            - 3つ目の弱学習器の残差を計算する
+            - これを延々繰り返す
+            - 各弱学習器の出力の重み付き和を最終的な出力とする
 
 ## 主要なツリー系アルゴリズム
 
@@ -1054,3 +1121,5 @@ https://www.slideshare.net/HitoshiHabe/ss-58784421
 - 加藤公一 (2018) "機械学習のエッセンス", SBクリエイティブ
 - 久保拓弥 (2012) "データ解析のための統計モデリング入門：一般化線形モデル・階層ベイズモデル・MCMC", 岩波書店
 - 荒木修・齋藤智彦 (2016) "本質から理解する 数学的手法", 裳華房
+- Sebastian Raschka, Vahid Mirjalili著, 株式会社クイープ訳, 福島真太朗監訳 (2018) "[第2版] Python機械学習プログラミング：達人データサイエンティストによる理論と実践", インプレス
+- K. He, X. Zhang, S. Ren and J. Sun (2015) "Deep Residual Learning for Image Recognition", arXiv:1512.03385 
