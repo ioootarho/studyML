@@ -1,24 +1,24 @@
 ---
 layout: default
-title: 02, 線形回帰
-nav_order: 2
+title: 03, 線形回帰
+nav_order: 3
+math: mathjax3
 ---
 
-
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']]
-  }
-};
-</script>
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
-
-
 # 線形回帰
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
+---
+
 
 政府統計e-Statで公開されている市町村別データで遊びながら線形回帰モデルを作成する。
 
