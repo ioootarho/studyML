@@ -1,3 +1,10 @@
+---
+layout: default
+title: 02, 線形回帰
+nav_order: 2
+---
+
+
 <script>
 MathJax = {
   tex: {
@@ -9,6 +16,7 @@ MathJax = {
 <script id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
+
 
 # 線形回帰
 
