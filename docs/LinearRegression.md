@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 03, 線形回帰
-nav_order: 3
+nav_order: 4
 math: mathjax3
 ---
 
