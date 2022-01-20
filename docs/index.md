@@ -954,6 +954,8 @@ $y=2x^2+1$
         &rarr; いずれも全結合層を深くした単純なネットワーク  
         - 全ての基本
         - シンプルすぎてこれ単体で実務で使うことはない  
+  
+
 - RNN (Recurrent Neural Network)  
     &rarr; 系列データを扱うネットワーク  
     &rarr; 自然言語、音声分野で用いられる
@@ -969,6 +971,8 @@ $y=2x^2+1$
     - GRU (Gated Reccurent Unit)  
         &rarr; 長期記憶を持たせたネットワーク  
         - Transformer登場以降、実務ではあまり使われない  
+  
+
 - CNN (Convolutional Neural Network)  
 ![Figure 32 CNN](./figures/CNN.jpeg)  
     &rarr; 畳み込み層 (Convolution Layer) と呼ばれる層で特徴抽出を行う  
@@ -982,6 +986,7 @@ $y=2x^2+1$
 <div style="text-align: right;">
 出典：He et al (2015) "Deep Residual Learning for Image Recognition"
 </div>
+  
 
 - Transformer系  
     &rarr; Attension機構と呼ばれる層でどこに注目すれば良いかを学習するEncoder-Decoderモデル  
