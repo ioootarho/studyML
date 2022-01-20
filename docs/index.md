@@ -34,6 +34,14 @@ math: mathjax3
 - pythonの文法説明
 - 各種ライブラリの使い方
 
+## ハンズオン実行環境準備
+
+GitHubリポジトリの[ハンズオン実行環境準備](https://github.com/suchu3/studyML#studyml)手順を参照。  
+以下2通りの環境を用意しているので、好みの方でハンズオン可能。
+
+- Dockerコンテナを使った環境
+- Google Colaboratory を使った環境
+
 ## 参考文献
 
 - D. Poole, A. Mackworth and R. Goebel (1998) "Computational Intelligence: A Logical Approach", New York: Oxford University Press.
