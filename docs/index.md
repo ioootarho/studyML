@@ -56,4 +56,5 @@ GitHubリポジトリの[ハンズオン実行環境準備](https://github.com/s
 - 久保拓弥 (2012) "データ解析のための統計モデリング入門：一般化線形モデル・階層ベイズモデル・MCMC", 岩波書店
 - 荒木修・齋藤智彦 (2016) "本質から理解する 数学的手法", 裳華房
 - Sebastian Raschka, Vahid Mirjalili著, 株式会社クイープ訳, 福島真太朗監訳 (2018) "[第2版] Python機械学習プログラミング：達人データサイエンティストによる理論と実践", インプレス
-- K. He, X. Zhang, S. Ren and J. Sun (2015) "Deep Residual Learning for Image Recognition", arXiv:1512.03385 
+- K. He, X. Zhang, S. Ren and J. Sun (2015) "Deep Residual Learning for Image Recognition", arXiv:1512.03385
+- R. E. Schapire (2013) "Explaining AdaBoost", Empirical Inference, Chapter 5, pp.37-52
