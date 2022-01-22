@@ -113,7 +113,7 @@ Schapire (2013) によるAdaBoostのアルゴリズムは以下の通り。
 
 ---
 - Input:  
-    - Examples $(x_1, y_1), \dots, (x_n, y_n)$ where $x_i \in \chi, \quad y_i \in \\{-1, +1\\}$  
+    - training examples $(x_1, y_1), \dots, (x_n, y_n)$ where $x_i \in \chi$, $y_i \in \\{-1, +1\\}$  
 - Initialize:  
     - Suppose $D_1(i)$ as weight of sample $i$  
     - Initialize $D_1(i)=\frac{1}{n}$ for $i=1, \dots, n$  
@@ -140,12 +140,48 @@ H(x) = sign (\sum^{T}_{t=1} \alpha_t h_t(x))
 \\[
 sign(x)=
 \begin{cases}
-1 & x>0 \\\\
-0 & x=0 \\\\
+1 & x>0 \cr
+0 & x=0 \cr
 -1 & x<0
 \end{cases}
 \\]  
 
+---
+
+### 勾配ブースト
+
+Friedman (2001) による勾配ブーストのアルゴリズムは以下の通り。  
+
+---
+- Input:  
+    - training set $(x_1, y_1), \dots, (x_n, y_n)$  
+    - a differentiable loss function $L(y_i, F(x_i))$  
+    - number of iterations $M$
+    - learning rate $\nu$
+- Initialize:  
+    - Initialize model with a constant value  
+\\[
+F_0(x) = \argmin_{\gamma} \sum^{n}_{i=1}L(y_i, \gamma)
+\\]
+    - In other words, initialize $F_0(x) = \frac{1}{n}\sum^{n}_{i=1}y_i$  
+- For $m=1, \dots, M$:  
+    - Compute so-called *pseudo-residuals*, for $i=1, \dots, n$:    
+\\[
+r_{im} = - \left[ 
+    \frac{\partial L(y_i,F(x_i))}{\partial F(x_i)} 
+    \right]_{F(x)=F_{m-1}(x)}
+\\]
+    - Fit a weak learner to the *pseudo-residuals* $r_{im}$ and create terminal region $R_{jm}$ for $j=1, \dots, J_m$  
+        - terminal region $R_{jm}$ is the $j$-th leaf in iteration $m$  
+        - $J_m$ means the total number of leaves in iteration $m$  
+    - Compute, for $j=1, \dots, J_m$:  
+\\[
+\gamma_{jm} = \argmin_{\gamma} \sum_{x_i \in R_{ij}} L(y_i, F_{m-1}(x_i)+\gamma)
+\\]
+    - Update model  
+\\[
+F_m(x) = F_{m-1}(x) + \nu \sum^{J_m}_{j=1}\gamma_{jm}I(x \in R_{jm})
+\\]
 ---
 
 ## 主要なツリー系アルゴリズム
