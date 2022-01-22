@@ -174,7 +174,7 @@ F_0(x) = \arg\min_{\gamma} \sum_{i=1}^{n}L(y_i, \gamma)
 \begin{align}
 r_{im} = - \left[ 
     \frac{\partial L(y_i,F(x_i))}{\partial F(x_i)} 
-    \right]
+    \right]_F(x)
 \end{align}
 \\]
     - Fit a weak learner to the *pseudo-residuals* $r_{im}$ and create terminal region $R_{jm}$ for $j=1, \dots, J_m$  
@@ -183,7 +183,7 @@ r_{im} = - \left[
     - Compute, for $j=1, \dots, J_m$:  
 \\[
 \begin{align}
-\gamma_{jm} = \arg\min_{\gamma} \sum_{x_i \in R_{ij}} L(y_i, F_{m-1}(x_i)+\gamma)
+\gamma_{jm} = \arg\min_{\gamma} \sum_{x_i \in R_{jm}} L(y_i, F_{m-1}(x_i)+\gamma)
 \end{align}
 \\]
     - Update model  
