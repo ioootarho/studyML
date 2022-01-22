@@ -133,12 +133,12 @@ D_{t+1}(i)=\frac{D_t(i)\exp(-\alpha_t y_i h_t(x_i))}{Z_t}
         where $Z_t$ is a normalization factor chosen so that $D_{t+1}$ will be a distribution  
 - Output:  
     - Final hypothesis  
-$$
+\\[
 \begin{align}
 H(x) = sign \left( \sum^{T}_{t=1} \alpha_t h_t(x) \right)
 \end{align}
-$$
-        where $sign()$ is sign function:   
+\\]  
+        where $sign()$ is sign function:  
 \\[
 sign(x)=
 \begin{cases}
@@ -189,7 +189,7 @@ end{align}
     - Update model  
 \\[
 \begin{align}
-F_m(x) = F_{m-1}(x) + \nu \sum^{J_m}_{j=1} \gamma_{jm} I(x \in R_{jm})
+F_{m}(x) = F_{m-1}(x) + \nu \sum^{J_m}_{j=1} \gamma_{jm} I(x \in R_{jm})
 \end{align}
 \\]
 
