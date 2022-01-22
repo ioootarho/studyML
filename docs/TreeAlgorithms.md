@@ -122,7 +122,7 @@ Schapire (2013) によるAdaBoostのアルゴリズムは以下の通り。
     - Get weak hypothesis $h_t:\chi \rightarrow \\{-1, +1\\}$  
     - Calculate error of $h_t$  
 \\[
-\epsilon_t = \sum^{n}_{i=1}D_t(i)[h_t(x_i) \neq y_i]
+\epsilon_t = \sum_{i=1}^{n}D_t(i)[h_t(x_i) \neq y_i]
 \\]
         where $[h_t(x_i) \neq y_i]=1$ if $h_t(x_i) \neq y_i$ otherwise $[h_t(x_i) \neq y_i]=0$  
     - Set $\alpha_t=\frac{1}{2}\ln (\frac{1-\epsilon_t}{\epsilon_t})$  
@@ -135,7 +135,7 @@ D_{t+1}(i)=\frac{D_t(i)\exp(-\alpha_t y_i h_t(x_i))}{Z_t}
     - Final hypothesis  
 \\[
 \begin{align}
-H(x) = sign \left( \sum^{T}_{t=1} \alpha_t h_t(x) \right)
+H(x) = sign \left( \sum_{t=1}^{T} \alpha_t h_t(x) \right)
 \end{align}
 \\]  
         where $sign()$ is sign function:  
@@ -175,7 +175,7 @@ F_0(x) = \arg\min_{\gamma} \sum_{i=1}^{n}L(y_i, \gamma)
 r_{im} = - \left[ 
     \frac{\partial L(y_i,F(x_i))}{\partial F(x_i)} 
     \right]
-end{align}
+\end{align}
 \\]
     - Fit a weak learner to the *pseudo-residuals* $r_{im}$ and create terminal region $R_{jm}$ for $j=1, \dots, J_m$  
         - terminal region $R_{jm}$ is the $j$-th leaf in iteration $m$  
