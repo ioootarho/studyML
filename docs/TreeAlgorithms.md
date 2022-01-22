@@ -133,9 +133,11 @@ D_{t+1}(i)=\frac{D_t(i)\exp(-\alpha_t y_i h_t(x_i))}{Z_t}
         where $Z_t$ is a normalization factor chosen so that $D_{t+1}$ will be a distribution  
 - Output:  
     - Final hypothesis  
-\\[
-H(x) = sign (\sum^{T}_{t=1} \alpha_t h_t(x))
-\\]
+$$
+\begin{align}
+H(x) = sign \left( \sum^{T}_{t=1} \alpha_t h_t(x) \right)
+\end{align}
+$$
         where $sign()$ is sign function:   
 \\[
 sign(x)=
@@ -161,26 +163,34 @@ Friedman (2001) による勾配ブーストのアルゴリズムは以下の通�
 - Initialize:  
     - Initialize model with a constant value  
 \\[
+\begin{align}
 F_0(x) = \arg\min_{\gamma} \sum^{n}_{i=1}L(y_i, \gamma)
+\end{align}
 \\]
     - In other words, initialize $F_0(x) = \frac{1}{n}\sum^{n}_{i=1}y_i$  
 - For $m=1, \dots, M$:  
     - Compute so-called *pseudo-residuals*, for $i=1, \dots, n$:  
 \\[
-r_{im} = - \big [ 
+\begin{align}
+r_{im} = - \left [ 
     \frac{\partial L(y_i,F(x_i))}{\partial F(x_i)} 
-    \big ]_{F(x)=F_{m-1}(x)}
+    \right ]_{F(x)=F_{m-1}(x)}
+end{align}
 \\]
     - Fit a weak learner to the *pseudo-residuals* $r_{im}$ and create terminal region $R_{jm}$ for $j=1, \dots, J_m$  
         - terminal region $R_{jm}$ is the $j$-th leaf in iteration $m$  
         - $J_m$ means the total number of leaves in iteration $m$  
     - Compute, for $j=1, \dots, J_m$:  
 \\[
+\begin{align}
 \gamma_{jm} = \arg\min_{\gamma} \sum_{x_i \in R_{ij}} L(y_i, F_{m-1}(x_i)+\gamma)
+\end{align}
 \\]
     - Update model  
 \\[
-F_m(x) = F_{m-1}(x) + \nu \sum^{J_m}\_{j=1} \gamma_{jm} I(x \in R_{jm})
+\begin{align}
+F_m(x) = F_{m-1}(x) + \nu \sum^{J_m}_{j=1} \gamma_{jm} I(x \in R_{jm})
+\end{align}
 \\]
 
 ---
