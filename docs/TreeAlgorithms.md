@@ -113,13 +113,13 @@ Schapire (2013) によるAdaBoostのアルゴリズムは以下の通り。
 
 ---
 - Input:  
-    - Examples $(x_1, y_1), \dots, (x_n, y_n)$ where $x_i \in \chi, \quad y_i \in \{-1, +1\}$  
+    - Examples $(x_1, y_1), \dots, (x_n, y_n)$ where $x_i \in \chi, \quad y_i \in \\{-1, +1\\}$  
 - Initialize:  
     - Suppose $D_1(i)$ as weight of sample $i$  
     - Initialize $D_1(i)=\frac{1}{n}$ for $i=1, \dots, n$  
 - For $t=1, \dots, T$:  
     - Train weak learner using weight distribution $D_t$  
-    - Get weak hypothesis $h_t:\chi \rightarrow \{-1, +1\}$  
+    - Get weak hypothesis $h_t:\chi \rightarrow \\{-1, +1\\}$  
     - Calculate error of $h_t$  
 \\[
 \epsilon_t = \sum^{n}_{i=1}D_t(i)[h_t(x_i) \neq y_i]
@@ -134,17 +134,18 @@ D_{t+1}(i)=\frac{D_t(i)\exp(-\alpha_t y_i h_t(x_i))}{Z_t}
 - Output:  
     - Final hypothesis  
 \\[
-H(x) = \sgn (\sum^{T}_{t=1} \alpha_t h_t(x))
+H(x) = sign (\sum^{T}_{t=1} \alpha_t h_t(x))
 \\]  
-        where $\sgn x$ is sign function:   
+        where $sign()$ is sign function:   
 \\[
-\sgn =
+sign(x)=
 \begin{cases}
-1 & x>0 \\
-0 & x=0 \\
+1 & x>0 \\\\
+0 & x=0 \\\\
 -1 & x<0
 \end{cases}
-\\]
+\\]  
+
 ---
 
 ## 主要なツリー系アルゴリズム
