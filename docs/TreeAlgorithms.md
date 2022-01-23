@@ -234,7 +234,7 @@ I(x \in R_{jm}) =
 \\]
 
 - Output:  
-     - $F_M(x_i)$ as finally predicted value
+    - $F_M(x_i)$ as finally predicted value
 ---
 
 勾配ブースティングを分類問題に用いる場合もアルゴリズムの枠組みは変わらない。  
@@ -346,18 +346,19 @@ L(y_i, F_{m-1}(x_i)+\gamma) \approx L(y_i, F_{m-1}(x_i)) + \frac{\partial L(y_i,
 \end{align}
 \\]
         - Caluculate the second derivative of the loss function  
-\\[
+        - To simplify, $F_{m-1}(x_i)$ is described as $F(x_i)$ for short  
+$$
 \begin{align*}
-\frac{\partial^2 L(y_i, F_{m-1}(x_i))}{\partial F_{m-1}(x_i)^2} &= \frac{\partial}{\partial F_{m-1}(x_i)} \left( \frac{\partial L(y_i, F_{m-1}(x_i))}{\partial F_{m-1}(x_i)} \right) \cr
-&= \frac{\partial}{\partial F_{m-1}(x_i)} \left( -y_i + \frac{e^{F_{m-1}(x_i)}}{e^{F_{m-1}(x_i)}+1} \right)  \cr
-&= \frac{\partial}{\partial F_{m-1}(x_i)} \left( -y_i + e^{F_{m-1}(x_i)} \cdot (e^{F_{m-1}(x_i)}+1)^{-1} \right) \cr
-&= -1 \cdot (e^{F_{m-1}(x_i)}+1)^{-2} \cdot e^{F_{m-1}(x_i)} \cdot e^{F_{m-1}(x_i)} + e^{F_{m-1}(x_i)} \cdot (e^{F_{m-1}(x_i)}+1)^{-1} \cr
-&= \frac{ - e^{2F_{m-1}(x_i)} }{ (e^{F_{m-1}(x_i)}+1)^{2} } + \frac{ e^{F_{m-1}(x_i)} }{ (e^{F_{m-1}(x_i)}+1) } \cr
-&= \frac{ e^{F_{m-1}(x_i)} }{ (e^{F_{m-1}(x_i)}+1)^{2} } \cr
-&= \frac{ e^{F_{m-1}(x_i)} }{ (e^{F_{m-1}(x_i)}+1) } \cdot \frac{1}{ (e^{F_{m-1}(x_i)}+1) } \cr
+\frac{\partial^2 L(y_i, F(x_i))}{\partial F(x_i)^2} &= \frac{\partial}{\partial F(x_i)} \left( \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \right) \cr
+&= \frac{\partial}{\partial F(x_i)} \left( -y_i + \frac{e^{F(x_i)}}{e^{F(x_i)}+1} \right)  \cr
+&= \frac{\partial}{\partial F(x_i)} \left( -y_i + e^{F(x_i)} \cdot (e^{F(x_i)}+1)^{-1} \right) \cr
+&= -1 \cdot (e^{F(x_i)}+1)^{-2} \cdot e^{F(x_i)} \cdot e^{F(x_i)} + e^{F(x_i)} \cdot (e^{F(x_i)}+1)^{-1} \cr
+&= \frac{ - e^{2F(x_i)} }{ (e^{F(x_i)}+1)^{2} } + \frac{ e^{F(x_i)} }{ (e^{F(x_i)}+1) } \cr
+&= \frac{ e^{F(x_i)} }{ (e^{F(x_i)}+1)^{2} } \cr
+&= \frac{ e^{F(x_i)} }{ (e^{F(x_i)}+1) } \cdot \frac{1}{ (e^{F(x_i)}+1) } \cr
 &= p_i(1-p_i)
 \end{align*}
-\\]
+$$
         - Therefore, optimal $\gamma_{jm}$ is  
 \\[
 \begin{align}
