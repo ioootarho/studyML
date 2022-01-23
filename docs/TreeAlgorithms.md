@@ -112,8 +112,11 @@ math: mathjax3
 Schapire (2013) によるAdaBoostのアルゴリズムは以下の通り。  
 
 ---
+**Algorithm: AdaBoost**  
+
 - Input:  
     - training examples $(x_1, y_1), \dots, (x_n, y_n)$ where $x_i \in \chi$, $y_i \in \\{-1, +1\\}$  
+    - iteration number $T$
 - Initialize:  
     - Suppose $D_1(i)$ as weight of sample $i$  
     - Initialize $D_1(i)=\frac{1}{n}$ for $i=1, \dots, n$  

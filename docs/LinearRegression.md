@@ -180,15 +180,27 @@ X^TX\beta = X^Ty
 ## 勾配降下法
 
 もう一つの代表的手法が勾配降下法。  
-勾配降下法とは次のような計算を繰り返してパラメータ$\beta_0, \beta_1$を更新することで、$J(\beta_0, \beta_1)$を最小にするようなパラメータ$\beta_0, \beta_1$を探し出すアルゴリズム。  
-パラメータの数を$j$、学習率を$\alpha$として  
+勾配降下法とは次のような計算を繰り返しながら$J(\beta_0, \beta_1)$を最小にするようなパラメータ$\beta_0, \beta_1$を探し出すアルゴリズム。  
+
+---
+**Algorithm: Gradient Descent**  
+
+- Input:  
+    - parameter vector $\beta$  
+    - a differentiable loss function $J(\beta)$  
+    - learning rate $\alpha$  
+    - iteration number $M$  
+- For $m=1, \dots, M$  
+    - Update
 \\[
-\beta_j := \beta_j - \alpha \frac{\partial}{\partial \beta_j} J(\beta_0, \beta_1)
+\beta := \beta - \alpha \frac{\partial}{\partial \beta} J(\beta)
 \\]
+- Output:  
+    - optimal parameter vector $\beta$
+---
 
 ただし、$:=$は右辺を左辺に代入する演算子。  
-また、$\frac{\partial}{\partial \beta_j} J(\beta_0, \beta_1)$は$J(\beta_0, \beta_1)$の$\beta_j$についての偏微分を表す。  
-各$j$についての偏微分を全て並べたベクトルを勾配と呼ぶ。  
+また、$\frac{\partial}{\partial \beta} J(\beta)$は勾配と呼ばれるもので、各$\beta_j$についての偏微分$\frac{\partial}{\partial \beta_j} J(\beta_0, \beta_1)$を並べたベクトルを表す。  
 
 直感的説明は以下の通り。  
 
