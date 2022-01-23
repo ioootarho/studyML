@@ -160,6 +160,7 @@ Friedman (2001) による勾配ブーストのアルゴリズムは以下の通�
 - Input:  
     - training set $(x_1, y_1), \dots, (x_n, y_n)$  
     - a differentiable loss function $L(y_i, F(x_i))$  
+        - for regression, MSE is commonly used as loss function
     - number of iterations $M$  
     - learning rate $\nu$  
 - Initialize:  
@@ -175,8 +176,8 @@ F_0(x) = \arg\min_{\gamma} \sum_{i=1}^{n}L(y_i, \gamma)
 \\[
 \begin{align}
 r_{im} = - \left[ 
-    \frac{\partial L(y_i,F(x_i))}{\partial F(x_i)} 
-    \right]_{F(x)={F_{m-1}}(x)}
+    \frac{\partial L(y_i,F_{m-1}(x_i))}{\partial F_{m-1}(x_i)} 
+    \right]
 \end{align}
 \\]
     - Fit a weak learner to the *pseudo-residuals* $r_{im}$ and create terminal region $R_{jm}$ for $j=1, \dots, J_m$  
