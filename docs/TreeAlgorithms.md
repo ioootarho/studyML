@@ -486,6 +486,8 @@ LightGBM (Light Gradient Boosting Machine) は、更なる計算高速化を目�
     - LightGBMはHistgram-based Algorithm
         &rarr; 特徴量をビニングして、どのビンで分割するのが一番良いか順に計算していく  
         &rarr; 計算速度短縮
+- Gradient-based One Side Sampling (GOSS)
+- Exclusive Feature Boundling (EFB)
 
 ### CatBoost
 
@@ -493,5 +495,12 @@ CatBoost (Categorical Boosting) はカテゴリ変数の扱いを工夫したブ
 
 - CARTではなく独自の決定木アルゴリズムを弱学習器に使用
 - 勾配ブースティング
-- 前処理なしにカテゴリ変数を上手に扱える  
-    - 独自のターゲットエンコーディング
+- カテゴリ変数の扱いを工夫  
+    - Ordered Target Statistics  
+        &rarr; 前処理なしでカテゴリ変数をよしなに扱える独自のターゲットエンコーディング
+    - Feature Combination  
+        &rarr; カテゴリ変数同士を組み合わせて新しいカテゴリ変数を作成
+- Ordered Boosting  
+    - Prediction Shift 問題  
+        &rarr; ブースティングの各ラウンドで毎回同じデータセットを使っているからバイアスが生じる  
+    &rarr; 各ラウンドで元のデータセットをシャッフルして都度サンプリングしたデータセットを使用することで対応
