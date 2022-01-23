@@ -398,7 +398,7 @@ I(x \in R_{jm}) =
 
 ランダムフォレストとは次のようなアンサンブルモデル。
 
-- 弱学習器に決定木を使用したBagging  
+- 弱学習器に決定木（CART）を使用したBagging  
 - ランダムに特徴量を非復元抽出してから各弱学習器を作る  
     - 通常のBaggingでは全特徴量を使用して各学習器を作る  
 &rarr; 2つのランダム性を取り入れて汎化性能を高めている  
@@ -409,9 +409,9 @@ I(x \in R_{jm}) =
 
 ### 勾配ブースト決定木
 
-勾配ブースト木 (Gradient Boosted Decision Tree; GBDT) とは次のようなアンサンブルモデル。
+勾配ブースト決定木 (Gradient Boosted Decision Tree; GBDT) とは次のようなアンサンブルモデル。
 
-- 弱学習器に決定木を使用した勾配ブースティング  
+- 弱学習器に決定木（CART）を使用した勾配ブースティング  
 &rarr; ランダムフォレストよりも精度は出やすいが、代わりに汎化性能が低くなりやすい  
 - early stopping  
     - Boosting を一定回数繰り返しても精度改善が見られなくなったら学習を打ち止める  
@@ -419,11 +419,79 @@ I(x \in R_{jm}) =
 
 ### XGBoost
 
-XGBoost (eXtreme Gradient Boosting) とは次のようなアンサンブルモデル。
+XGBoost (eXtreme Gradient Boosting) とはその名の通りエクストリームなGBDT。
 
-- GBDTがベース
-
+- CARTではなく独自の決定木アルゴリズムを弱学習器に使用
+- 正則化項付き損失関数
+- 勾配ブースティング
+- 大規模データにおける計算高速化
+    - Approximate Greedy Algorithm  
+        - 大多数の決定木アルゴリズムはSort-based Algorithm  
+            &rarr; 特徴量を小さい順に並べて、どこで分割するのが一番良いか順に計算していく  
+        - XGBoostはApproximate Greedy Algorithm  
+            &rarr; 特徴量を小さい順に並べて分位点を求め、どの分位点で分割するのが一番良いか順に計算していく  
+    - Parallel Learning
+    - Weighted Quantile Sketch  
+        - Quantile Sketch Algorithm  
+            &rarr; 大規模データで各特徴量について分位点を求めたいが、全データを読み込んでいたのではメモリ負荷が大きい  
+            &rarr; データをいくつかのブロックに分けて別々のコンピュータに読み込ませる  
+            &rarr; それらから全体のヒストグラムを近似して分位点を近似する  
+        - Weighted Quantile Sketch  
+            &rarr; 分類問題のときのみ登場する
+            &rarr; 普通に分位点を出したら各分位点間に含まれるデータの個数
+            は同じ  
+            &rarr; 効率よく閾値を探索するには、正しく分類できているサンプルが多い範囲の分位点は粗く、誤分類しているサンプルが多い範囲の分位点は細かくしておきたい  
+            &rarr; AdaBoostの重みのように、各サンプルに重みを割り振り、誤分類されたサンプルの重みは大きく、正解したサンプルの重みは小さくする  
+            &rarr; データの個数ではなく重みの合計が均等になるように分位点を定める  
+            &rarr; 効率よく閾値を探索できる  
+- Sparsity-aware Split Finding  
+    &rarr; 欠損値が含まれていても、よしなに扱える  
+- 計算機科学的な高速化アプローチ
+    - Cache-aware Access  
+        &rarr; 重要な計算をメインメモリではなくキャッシュメモリで行う  
+    - Blocks for Out-of-core compuation  
+        &rarr; メインメモリに載らないような大規模データを効率良く扱うための工夫
+        - Block Compression  
+                &rarr; Compressed Sparce Column (CSC) フォーマットで列ごとに圧縮したデータをブロックに分割してディスクに配置する  
+                &rarr; メインメモリへは各ブロック別々のスレッドで読み込んで解凍する  
+                &rarr; 生データをディスクから読み込むよりは、圧縮した状態で読み込んでから解凍した方が高速
+        - Block Sharding  
+        &rarr; ブロックを複数ディスクに分割配置  
+        &rarr; 各ディスクにプリフェッチ用のスレッドを割り当てる  
+        &rarr; 順番にプリフェッチ  
+        &rarr; ディスク読み込みのスループット向上
+- Subsample  
+    &rarr; 行方向のランダム性
+- Colsample_bytree  
+    &rarr; 列方向のランダム性
 
 ### LightGBM
 
+LightGBM (Light Gradient Boosting Machine) は、更なる計算高速化を目指してMicrosoft の研究者らが開発したアルゴリズム。  
+
+- CARTではなく独自の決定木アルゴリズムを弱学習器に使用
+- 勾配ブースティング
+- Leaf-wise tree growth
+    - XGBoost含む大多数の決定木アルゴリズムはLevel-wise tree growth  
+![figure LevelWiseTreeGrowth](./figures/LevelWiseTreeGrowth.png)  
+    - LightGBMはLeaf-wise tree growth  
+![figure LeafWiseTreeGrowth](./figures/LeafWiseTreeGrowth.png)  
+<div style="text-align: right;">
+出典：https://lightgbm.readthedocs.io/en/latest/Features.html
+</div>
+
+- Histogram-based algorithm
+    - 大多数の決定木アルゴリズムはSort-based Algorithm  
+        &rarr; 特徴量を小さい順に並べて、どこで分割するのが一番良いか順に計算していく  
+    - LightGBMはHistgram-based Algorithm
+        &rarr; 特徴量をビニングして、どのビンで分割するのが一番良いか順に計算していく  
+        &rarr; 計算速度短縮
+
 ### CatBoost
+
+CatBoost (Categorical Boosting) はカテゴリ変数の扱いを工夫したブースティングアルゴリズム。
+
+- CARTではなく独自の決定木アルゴリズムを弱学習器に使用
+- 勾配ブースティング
+- 前処理なしにカテゴリ変数を上手に扱える  
+    - 独自のターゲットエンコーディング
