@@ -126,17 +126,17 @@ Schapire (2013) によるAdaBoostのアルゴリズムは以下の通り。
     - Train weak learner using weight distribution $D_t$  
     - Get weak hypothesis $h_t:\chi \rightarrow \\{-1, +1\\}$  
     - Calculate error of $h_t$  
-$$
+\\[
 \epsilon_t = \sum_{i=1}^{n}D_t(i)I(h_t(x_i) \neq y_i)
-$$
+\\]
         where $I(h_t(x_i) \neq y_i)$ is a indicator function:  
-$$
+\\[
 I(h_t(x_i) \neq y_i)=
 \begin{cases}
 1 & h_t(x_i) \neq y_i \cr
 0 & h_t(x_i) = y_i
 \end{cases}
-$$  
+\\]
     - Set $\alpha_t=\frac{1}{2}\ln (\frac{1-\epsilon_t}{\epsilon_t})$  
     - Update, for $i=1, \dots, n$:  
 \\[
@@ -349,7 +349,7 @@ L(y_i, F_{m-1}(x_i)+\gamma) \approx L(y_i, F_{m-1}(x_i)) + \frac{\partial L(y_i,
         - Caluculate the second derivative of the loss function  
         - To simplify, $F_{m-1}(x_i)$ is described as $F(x_i)$ for short  
 \\[
-\begin{align*}
+\begin{align}
 \frac{\partial^2 L(y_i, F(x_i))}{\partial F(x_i)^2} &= \frac{\partial}{\partial F(x_i)} \left( \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \right) \cr
 &= \frac{\partial}{\partial F(x_i)} \left( -y_i + \frac{e^{F(x_i)}}{e^{F(x_i)}+1} \right)  \cr
 &= \frac{\partial}{\partial F(x_i)} \left( -y_i + e^{F(x_i)} \cdot (e^{F(x_i)}+1)^{-1} \right) \cr
@@ -358,7 +358,7 @@ L(y_i, F_{m-1}(x_i)+\gamma) \approx L(y_i, F_{m-1}(x_i)) + \frac{\partial L(y_i,
 &= \frac{ e^{F(x_i)} }{ (e^{F(x_i)}+1)^{2} } \cr
 &= \frac{ e^{F(x_i)} }{ (e^{F(x_i)}+1) } \cdot \frac{1}{ (e^{F(x_i)}+1) } \cr
 &= p_i(1-p_i)
-\end{align*}
+\end{align}
 \\]
         - Therefore, optimal $\gamma_{jm}$ is  
 \\[
