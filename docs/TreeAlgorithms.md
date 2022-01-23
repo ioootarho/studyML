@@ -233,8 +233,9 @@ I(x \in R_{jm}) =
 \end{cases}
 \\]
 
-- Output:  
+- Output:
     - $F_M(x_i)$ as finally predicted value
+
 ---
 
 勾配ブースティングを分類問題に用いる場合もアルゴリズムの枠組みは変わらない。  
@@ -347,7 +348,7 @@ L(y_i, F_{m-1}(x_i)+\gamma) \approx L(y_i, F_{m-1}(x_i)) + \frac{\partial L(y_i,
 \\]
         - Caluculate the second derivative of the loss function  
         - To simplify, $F_{m-1}(x_i)$ is described as $F(x_i)$ for short  
-$$
+\\[
 \begin{align*}
 \frac{\partial^2 L(y_i, F(x_i))}{\partial F(x_i)^2} &= \frac{\partial}{\partial F(x_i)} \left( \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \right) \cr
 &= \frac{\partial}{\partial F(x_i)} \left( -y_i + \frac{e^{F(x_i)}}{e^{F(x_i)}+1} \right)  \cr
@@ -358,7 +359,7 @@ $$
 &= \frac{ e^{F(x_i)} }{ (e^{F(x_i)}+1) } \cdot \frac{1}{ (e^{F(x_i)}+1) } \cr
 &= p_i(1-p_i)
 \end{align*}
-$$
+\\]
         - Therefore, optimal $\gamma_{jm}$ is  
 \\[
 \begin{align}
