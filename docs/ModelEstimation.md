@@ -82,8 +82,11 @@ $$
   - 外れ値があると簡単に爆発する
     - 日次CV数予測で日々のCV数は100前後で推移している
     - 1日だけCV数が3の日が存在する
-    - モデルの出力が100だったとするとMAPEは$ \left| \frac{3-100}{3} \right|=32.33 $
-    - つまり3,233%
+    - モデルの出力が100だったとするとその日のMAPEは  
+$$
+MAPE = \left| \frac{3-100}{3} \right|=32.33 
+$$
+    - つまり誤差3,233%
 
 **WMAPE (Weighted Mean Absolute Percentage Error)**
 
@@ -257,7 +260,7 @@ $$
 
 これらを用いて、
 - モデルの出力そのものは確率
-- その確率に閾値を設けてPositive/Negative変換している
+- その確率に閾値を設けてPositive/Negative変換している  
 &rarr; 閾値を変えればPositive/Negativeの変換結果も変化する  
 &rarr; TPRとFPRの値も変化する  
 &rarr; 閾値を変化させながらTPRとFPRをプロットしていったのがROC曲線  
