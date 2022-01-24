@@ -473,6 +473,7 @@ LightGBM (Light Gradient Boosting Machine) は、更なる計算高速化を目�
 - 勾配ブースティング
 - Leaf-wise tree growth
     - XGBoost含む大多数の決定木アルゴリズムはLevel-wise tree growth  
+        - 後にXGBoostはLeaf-wise tree growth 対応
 ![figure LevelWiseTreeGrowth](./figures/LevelWiseTreeGrowth.png)  
     - LightGBMはLeaf-wise tree growth  
 ![figure LeafWiseTreeGrowth](./figures/LeafWiseTreeGrowth.png)  
