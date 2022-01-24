@@ -44,12 +44,12 @@ GitHubリポジトリの[ハンズオン実行環境準備](https://github.com/s
 
 ## 参考文献
 
-- D. Poole, A. Mackworth and R. Goebel (1998) "Computational Intelligence: A Logical Approach", New York: Oxford University Press.
-- T. Mitchell (1997) "Machine Learning", New York: McGraw Hill.
+- D. Poole, A. Mackworth and R. Goebel (1998) "Computational Intelligence: A Logical Approach", New York: Oxford University Press
+- T. Mitchell (1997) "Machine Learning", New York: McGraw Hill
 - ペドロ・ミンゴス著, 神嶌敏弘訳 (2021) "マスターアルゴリズム：世界を再構築する「究極の機械学習」", 講談社
 - 松尾豊 (2015) "人工知能は人間を超えるか：ディープラーニングの先にあるもの", KADOKAWA
-- John. R. Searle (1980) "Minds, brains, and programs", Behavioral and Brain Sciences 3 (3), pp.417-457
-- S. Russell and P. Norvig (2003) "Artificial Intelligence: A Modern Approach", Upper Saddle River, New Jersey: Prentice Hall.
+- John. R. Searle (1980) "Minds, brains, and programs", Behavioral and Brain Sciences, 3, (3), pp.417-457
+- S. Russell and P. Norvig (2003) "Artificial Intelligence: A Modern Approach", Upper Saddle River, New Jersey: Prentice Hall
 - 江崎貴裕 (2020) "データ分析のための数理モデル入門：本質をとらえた分析のために", ソシム
 - 竹村彰通 (2020) "新装改訂版 現代数理統計学", 学術図書
 - 加藤公一 (2018) "機械学習のエッセンス", SBクリエイティブ
@@ -58,3 +58,7 @@ GitHubリポジトリの[ハンズオン実行環境準備](https://github.com/s
 - Sebastian Raschka, Vahid Mirjalili著, 株式会社クイープ訳, 福島真太朗監訳 (2018) "[第2版] Python機械学習プログラミング：達人データサイエンティストによる理論と実践", インプレス
 - K. He, X. Zhang, S. Ren and J. Sun (2015) "Deep Residual Learning for Image Recognition", arXiv:1512.03385
 - R. E. Schapire (2013) "Explaining AdaBoost", Empirical Inference, Chapter 5, pp.37-52
+- J. H. Friedman (2001) "Greedy Function Approximation: A Gradient Boosting Machine", Annals of Statistics, 29, (5), pp.1189-1232
+- T. Chen, C. Guestrin (2016) "XGBoost: A Scalable Tree Boosting System", KDD'16, pp.785-794
+- G. Ke, Q. Meng, T. Finely, T. Wang, W. Chen, W. Ma, Q. Ye, T. Y. Liu (2017) "LightGBM: A Highly Efficient Gradient Boosting Decision Tree", NIPS 2017
+- L. Prokhorenkova, G. Gusev, A. Vorobev, A. V. Dorogush, A. Gulin (2017) "CatBoost: unbiased boosting with categorical features", 	arXiv:1706.09516
