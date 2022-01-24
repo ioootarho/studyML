@@ -34,7 +34,7 @@ math: mathjax3
 MSEを含む代表的な指標は以下の通り。  
 ただし、実測値を$y_i$として、モデルの出力を$\hat{y_i}$とする。
 
-#### MSE (Mean Squared Error)
+**MSE (Mean Squared Error)**
 
 $$
 \begin{align}
@@ -49,7 +49,7 @@ $$
 - 計算上は優れているが、ビジネスサイドに説明するのには向いていない
   - 土地の価格を予測しました。誤差は平均して300円の2乗です。
 
-#### MAE (Mean Absolute Error)
+**MAE (Mean Absolute Error)**
 
 $$
 \begin{align}
@@ -64,7 +64,7 @@ $$
 - 実測値とモデルの出力の差が大きくなると、MAEよりもMSEの方が顕著に悪化する  
   cf. $y=x^2$のグラフと$y=|x|$のグラフ
 
-#### MAPE (Mean Absolute Percentage Error)
+**MAPE (Mean Absolute Percentage Error)**
 
 $$
 \begin{align}
@@ -82,9 +82,10 @@ $$
   - 外れ値があると簡単に爆発する
     - 日次CV数予測で日々のCV数は100前後で推移している
     - 1日だけCV数が3の日が存在する
-    - モデルの出力は100だったとするとMAPEは$|\frac{3-100}{3}|=3,233\%$
+    - モデルの出力は100だったとするとMAPEは$|\frac{3-100}{3}|=32.33$
+    - つまり3,233%
 
-#### WMAPE (Weighted Mean Absolute Percentage Error)
+**WMAPE (Weighted Mean Absolute Percentage Error)**
 
 $$
 \begin{align}
@@ -116,7 +117,7 @@ $$
 
 したがって、誤分類は誤分類でも絶対あかん誤分類か、それともまだ許容できる誤分類か、どっちをやらかしたのか考慮できるような評価指標が欲しい。
 
-#### 混同行列
+**混同行列**
 
 分類問題の評価指標を考えるときに避けて通れないのが混同行列。  
 
@@ -148,7 +149,7 @@ $$
 - 悪性腫瘍 &rarr; Positive &rarr; 1
 - 良性腫瘍 &rarr; Negative &rarr; 0
 
-#### Accuracy
+**Accuracy**
 
 $$
 Accuracy = \frac{TP+TN}{TP+TN+FP+FN}
@@ -161,7 +162,7 @@ $$
   - 腫瘍といっても大多数は良性で、悪性なのは極少数
     - とりあえず良性と診断しておけば、例え悪性だったとしてもAccuracyは良くなる
 
-#### Precision
+**Precision**
 
 $$
 Precision = \frac{TP}{TP+FP}
@@ -174,7 +175,7 @@ $$
   - 自信を持って悪性腫瘍だと断言できる患者だけを悪性腫瘍と診断
     &rarr; Precisionは良いが、取りこぼしが生まれる
 
-#### Recall
+**Recall**
 
 $$
 Recall = \frac{TP}{TP+FN}
@@ -188,7 +189,7 @@ $$
   - ちょっとでも疑わしい患者は片っ端から悪性腫瘍と診断
     &rarr; Recallは良いが、診断結果の信憑性が損なわれる
 
-#### F1-Score
+**F1-Score**
 
 PrecisionとRecallはトレードオフなので、両者のバランスを取った指標が欲しい。
 
@@ -210,7 +211,7 @@ $$
     &rarr; 全患者良性と診断しておけば、PrecisionもRecallもF1-Scoreも全て良くなる
     &rarr; 少数の事象をPositiveにしておくのがポイント
 
-#### マシューズ相関係数 (Matthews Correlation Coefficient; MCC)
+**マシューズ相関係数 (Matthews Correlation Coefficient; MCC)**
 
 F1-Scoreのように多数の事象と少数の事象、どちらがPositiveでもきちんと判断できる指標が欲しい。
 
@@ -230,7 +231,7 @@ $$
 
 参考：https://qiita.com/mmmmm1202/items/a4628bc549288f4dee33
 
-#### ROC-AUC
+**ROC-AUC**
 
 ROC曲線 (Receiver Operating Characeristics Cureve) の下の面積 (Area Under Cureve) のこと。  
 
@@ -241,17 +242,18 @@ ROC曲線 (Receiver Operating Characeristics Cureve) の下の面積 (Area Under
 
 - True Positive Rate  
   - Recallのこと
-  - 実際にはPositiveのものを、いくつPositiveとモデルが出力したか
+  - 実際にはPositiveのものを、いくつPositiveとモデルが出力したか  
 $$
 TPR = \frac{TP}{TP+FN}
 $$
 
 - False Positive Rate  
-  - 実際にはNegativeのものを、いくつPositiveとモデルが出力したか
+  - 実際にはNegativeのものを、いくつPositiveとモデルが出力したか  
 $$
 FPR = \frac{FP}{FP+TN}
 $$
 
+これらを用いて、
 - モデルの出力そのものは確率
 - その確率に閾値を設けてPositive/Negative変換している
 &rarr; 閾値を変えればPositive/Negativeの変換結果も変化する  
@@ -262,7 +264,7 @@ $$
 - $0.5$から$1$をとる
 - 大きいほど良い
 - 注意点
-  - 正例割合が不均衡だとAUCは大きくなる
+  - 正例割合が不均衡だとAUCは大きくなる  
   &rarr; 実際には大したことないモデルでも良さそうに見えてしまう
 
 ## 学習曲線
