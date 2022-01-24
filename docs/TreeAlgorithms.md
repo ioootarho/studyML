@@ -470,6 +470,7 @@ XGBoost (eXtreme Gradient Boosting) とはその名の通りエクストリー�
 LightGBM (Light Gradient Boosting Machine) は、更なる計算高速化を目指してMicrosoft の研究者らが開発したアルゴリズム。  
 
 - CARTではなく独自の決定木アルゴリズムを弱学習器に使用
+- 正則化項付き損失関数
 - 勾配ブースティング
 - Leaf-wise tree growth
     - XGBoost含む大多数の決定木アルゴリズムはLevel-wise tree growth  
@@ -489,12 +490,17 @@ LightGBM (Light Gradient Boosting Machine) は、更なる計算高速化を目�
         &rarr; 計算速度短縮
 - Gradient-based One Side Sampling (GOSS)
 - Exclusive Feature Boundling (EFB)
+- Bagging Fraction (Subsample)  
+    &rarr; 行方向のランダム性
+- Feature Fraction (Colsample_bytree)  
+    &rarr; 列方向のランダム性
 
 ### CatBoost
 
 CatBoost (Categorical Boosting) はカテゴリ変数の扱いを工夫したブースティングアルゴリズム。
 
 - CARTではなく独自の決定木アルゴリズムを弱学習器に使用
+- 正則化項付き損失関数
 - 勾配ブースティング
 - カテゴリ変数の扱いを工夫  
     - Ordered Target Statistics  

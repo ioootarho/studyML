@@ -82,7 +82,7 @@ $$
   - 外れ値があると簡単に爆発する
     - 日次CV数予測で日々のCV数は100前後で推移している
     - 1日だけCV数が3の日が存在する
-    - モデルの出力は100だったとするとMAPEは$|\frac{3-100}{3}|=32.33$
+    - モデルの出力が100だったとするとMAPEは$ \left| \frac{3-100}{3} \right|=32.33 $
     - つまり3,233%
 
 **WMAPE (Weighted Mean Absolute Percentage Error)**
@@ -172,7 +172,7 @@ $$
 - $0$から$1$をとる
 - 悪性腫瘍と診断された患者が実際には何人悪性だったか
 - 注意点
-  - 自信を持って悪性腫瘍だと断言できる患者だけを悪性腫瘍と診断
+  - 自信を持って悪性腫瘍だと断言できる患者だけを悪性腫瘍と診断  
     &rarr; Precisionは良いが、取りこぼしが生まれる
 
 **Recall**
@@ -186,7 +186,7 @@ $$
 - 大きいほど良い
 - 本当に悪性腫瘍の人を何人悪性と診断できたか
 - 注意点
-  - ちょっとでも疑わしい患者は片っ端から悪性腫瘍と診断
+  - ちょっとでも疑わしい患者は片っ端から悪性腫瘍と診断  
     &rarr; Recallは良いが、診断結果の信憑性が損なわれる
 
 **F1-Score**
@@ -206,9 +206,9 @@ $$
 - 大きいほど良い
 - 注意点
   - 悪性腫瘍と良性腫瘍の割合（正例割合）が不均衡で、悪性腫瘍の数が極端に少なかった場合、次のようにラベルを逆につけているとF1-Scoreが意味をなさない
-    - 悪性腫瘍 &rarr; Negative &rarr; 0
-    - 良性腫瘍 &rarr; Positive &rarr; 1
-    &rarr; 全患者良性と診断しておけば、PrecisionもRecallもF1-Scoreも全て良くなる
+    - 悪性腫瘍 &rarr; Negative &rarr; 0  
+    - 良性腫瘍 &rarr; Positive &rarr; 1  
+    &rarr; 全患者良性と診断しておけば、PrecisionもRecallもF1-Scoreも全て良くなる  
     &rarr; 少数の事象をPositiveにしておくのがポイント
 
 **マシューズ相関係数 (Matthews Correlation Coefficient; MCC)**
@@ -243,12 +243,14 @@ ROC曲線 (Receiver Operating Characeristics Cureve) の下の面積 (Area Under
 - True Positive Rate  
   - Recallのこと
   - 実際にはPositiveのものを、いくつPositiveとモデルが出力したか  
+
 $$
 TPR = \frac{TP}{TP+FN}
 $$
 
 - False Positive Rate  
   - 実際にはNegativeのものを、いくつPositiveとモデルが出力したか  
+
 $$
 FPR = \frac{FP}{FP+TN}
 $$
