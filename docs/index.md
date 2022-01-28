@@ -62,3 +62,4 @@ GitHubリポジトリの[ハンズオン実行環境準備](https://github.com/s
 - T. Chen, C. Guestrin (2016) "XGBoost: A Scalable Tree Boosting System", KDD'16, pp.785-794
 - G. Ke, Q. Meng, T. Finely, T. Wang, W. Chen, W. Ma, Q. Ye, T. Y. Liu (2017) "LightGBM: A Highly Efficient Gradient Boosting Decision Tree", NIPS 2017
 - L. Prokhorenkova, G. Gusev, A. Vorobev, A. V. Dorogush, A. Gulin (2017) "CatBoost: unbiased boosting with categorical features", 	arXiv:1706.09516
+- J. Bergstra and Y. Bengjo (2012) "Random Search for hyper-parameter optimization", Journal of Machine Learning Research, 13, (2), pp.281-305
