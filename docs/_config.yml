@@ -12,4 +12,6 @@ aux_links_new_tab: false
 back_to_top: true
 back_to_top_text: "Back to top"
 
-google_analytics: G-N1J10H7DLE
+# Google Analytics
+ga_tracking: G-L77VLDFG82
+ga_tracking_anonymize_ip: true
