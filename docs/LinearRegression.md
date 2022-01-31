@@ -196,7 +196,7 @@ X^TX\beta = X^Ty
 \beta := \beta - \alpha \frac{\partial}{\partial \beta} J(\beta)
 \\]
 - Output:  
-    - optimal parameter vector $\beta$
+    - optimal parameter vector $\beta$  
 ---
 
 ただし、$:=$は右辺を左辺に代入する演算子。  
