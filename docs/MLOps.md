@@ -53,10 +53,10 @@ Jupyter notebook でモデルの学習を行っただけでは、そのモデル
   
 
 2. モデル配布パターン  
-  - 学習したモデルを配布する  
-    - exeファイル  
-    - VBAツール  
-    - コンテナ  
+  - 学習したモデルを配布する
+    - exeファイル
+    - VBAツール
+    - コンテナ
   - ユーザ個々人が自身のPC上で配布されたモデルを動かして推論実行する  
 
 モデル配布パターンのメリット  
@@ -294,7 +294,7 @@ Gama et al (2014) ではデータドリフトもコンセプトドリフトの1�
 
 - Kullback-Leibler Divergence  
   - 2つの確率分布がどのくらい異なっているかを表す  
-  - $0$から$\infin$をとる  
+  - $0$から$\infty$をとる  
   - 小さければ小さいほど2つの確率分布が似ていて、$0$だと一致する  
 \\[
 \begin{align}
@@ -305,10 +305,14 @@ D_{KL}(p||q) &= CrossEntropy - Entropy \cr
 \\]
 
 - Jensen-Shannon Divergence  
-  - Kullback-Leibler Divergence は\[D_{KL}(p||q) \neq D_{KL}(q||p)\]なので距離の公理を満たさない  
+  - Kullback-Leibler Divergence は
+\\[
+D_{KL}(p||q) \neq D_{KL}(q||p)
+\\]
+  なので距離の公理を満たさない  
   - 距離の公理を満たすようにしたのがJensen-Shannon Divergence  
   - Kullback-Leibler Divergence 同様2つの確率分布がどのくらい異なっているかを表す  
-  - $0$から$\infin$をとる  
+  - $0$から$\infty$をとる  
   - 小さければ小さいほど2つの確率分布が似ていて、$0$だと一致する  
 \\[
 \begin{align}
@@ -326,7 +330,9 @@ where \ M = \frac{1}{2}(p(x)+q(x))
     - 0.2以上 &rarr; 大きな変化あり
   - 0.2ではなく0.25を閾値として使用することもある  
 \\[
-PSI = \sum_{x} \left\{ (p(x)-q(x)) \cdot \log \frac{p(x)}{q(x)} \right\}
+\begin{align}
+PSI = \sum_{x} \left( (p(x)-q(x)) \cdot \log \frac{p(x)}{q(x)} \right)
+\end{align}
 \\]
 
 ### コンセプトドリフト
