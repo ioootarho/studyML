@@ -197,6 +197,7 @@ X^TX\beta = X^Ty
 \\]
 - Output:  
     - optimal parameter vector $\beta$  
+
 ---
 
 ただし、$:=$は右辺を左辺に代入する演算子。  
