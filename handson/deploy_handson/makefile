@@ -20,6 +20,7 @@ build:
 run:
 	docker run \
 		-d \
+		--net deploy-handson-network \
 		--name $(WEB_SINGLE_PATTERN) \
 		-p $(WEB_SINGLE_PATTERN_PORT):$(WEB_SINGLE_PATTERN_PORT) \
 		$(DOCKER_REPOSITORY):$(WEB_SINGLE_PATTERN)_$(IMAGE_VERSION)

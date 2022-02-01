@@ -38,6 +38,7 @@ $ make run
 # 実行されるコマンド
 # docker run \
 #     -d \
+#     --net deploy-handson-network \
 #     --name web_single_pattern \
 #     -p 8000:8000 \
 #     studyml/deploy_handson:web_single_pattern_0.0.1

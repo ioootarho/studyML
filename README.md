@@ -23,6 +23,12 @@ cd ~/Desktop
 git clone https://github.com/suchu3/studyML.git
 ```
 
+### コンテナネットワークを作成
+
+```
+docker network create deploy-handson-network
+```
+
 ### イメージをビルド
 
 まず、リポジトリ中のdockerディレクトリに移動します。
@@ -39,7 +45,7 @@ docker build -t studyml_image .
 
 イメージのビルド後、次のコマンドでイメージからコンテナを起動します。
 ```
-docker run --name studyml_container -itd -v ~/Desktop/studyML/handson:/handson -p 3000:8888 studyml_image
+docker run --net deploy-handson-network --name studyml_container -itd -v ~/Desktop/studyML/handson:/handson -p 3000:8888 studyml_image
 ```
 
 ### Jupyter Lab を起動
