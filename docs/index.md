@@ -27,12 +27,27 @@ math: mathjax3
 
 - イメージを掴むための日本語の説明
 - 背景を理解するための最低限の数式
-- pythonで実装したコード
+- pythonでのハンズオン
 
 ## 本資料で扱わないこと
 
-- pythonの文法説明
-- 各種ライブラリの使い方
+- pythonの文法説明  
+  &rarr; [python公式ドキュメント](https://www.python.org/)参照
+- 各種ライブラリの使い方  
+  &rarr; 各種ライブラリの公式ドキュメント参照  
+    - [numpy](https://numpy.org/)
+    - [pandas](https://pandas.pydata.org/)
+    - [scipy](https://scipy.org/)
+    - [matplotlib](https://matplotlib.org/)
+    - [seaborn](https://seaborn.pydata.org/)
+    - [scikit-learn](https://scikit-learn.org/stable/)
+    - [XGBoost](https://xgboost.ai/)
+    - [LightBGM](https://lightgbm.readthedocs.io/en/latest/)
+    - [CatBoost](https://catboost.ai/)
+    - [Optuna](https://optuna.org/)
+    - [ONNX](https://onnx.ai/)
+    - [ONNX Tools](https://github.com/onnx/onnxmltools)
+    - [ONNX Runtime](https://onnxruntime.ai/)
 
 ## ハンズオン実行環境準備
 
