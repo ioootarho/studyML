@@ -218,17 +218,20 @@ J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 
 となる。線形回帰のとき同様にこれらをまとめて行列表記すると  
 \\[
-\frac{\partial J(\beta)}{\partial \beta} =  
+\begin{align}
+\frac{\partial J(\beta)}{\partial \beta} &=  
 \begin{pmatrix}
 \displaystyle \frac{\partial J(\beta)}{\partial \beta_0} \cr
 \cr
 \displaystyle \frac{\partial J(\beta)}{\partial \beta_1}
-\end{pmatrix}=
+\end{pmatrix} \cr
+&=
 \begin{pmatrix}
 \displaystyle \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)1 \cr
 \cr
 \displaystyle \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)unemp_i
-\end{pmatrix}\\=
+\end{pmatrix} \cr
+&=
 \frac{1}{n}
 \begin{pmatrix}
 1_1 & \cdots & 1_i  & \cdots & 1_n \cr
@@ -241,8 +244,10 @@ p_1 - y_1 \cr
 p_i - y_i \cr
 \vdots \cr
 p_n - y_n
-\end{pmatrix}\\=
+\end{pmatrix} \cr
+&=
 \frac{1}{n} X^T(S(X\beta) - y)
+\end{align}
 \\]
 
 を得る。この勾配を用いた  
