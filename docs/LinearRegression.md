@@ -264,7 +264,7 @@ J(\beta) &= \frac{1}{n}(y-X\beta)^T(y-X\beta) \cr
 \begin{align}
 \frac{\partial}{\partial \beta}J(\beta) &= \frac{1}{n} (-2X^Ty + 2X^TX\beta) \cr
 &= \frac{2}{n}  (-X^Ty + X^TX\beta) \cr
-&= \frac{2}{n} (X\beta - y)X^T \cr
+&= \frac{2}{n} X^T(X\beta - y) \cr
 &= \frac{2}{n} \left[ (X\beta - y)^TX \right]^T
 \end{align}
 \\]
@@ -272,7 +272,7 @@ J(\beta) &= \frac{1}{n}(y-X\beta)^T(y-X\beta) \cr
 \\[
 \begin{align}
 \beta &:= \beta - \alpha \frac{\partial}{\partial \beta}J(\beta) \cr
-&= \beta - \alpha \cdot \frac{2}{n} (X\beta - y)X^T 
+&= \beta - \frac{2 \alpha}{n} X^T(X\beta - y)
 \end{align}
 \\]
 として更新を行っている。  
