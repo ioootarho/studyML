@@ -151,7 +151,7 @@ P(Y=1) &= \frac{1}{1+e^{-z}}
     - 分類問題なのでLog Loss
     - モデルから予測される確率$P(Y=1)$を$p$とおく
     - $n$をサンプルサイズとする
-\\
+\\[
 \begin{align}
 J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 \end{align}
@@ -162,7 +162,8 @@ J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 勾配は連鎖律により次のように計算できる。  
 \\[
 \begin{align}
-\frac{\partial J(\beta)}{\partial \beta} = -\frac{1}{n} \sum_{i=1}^{n} \frac{\partial J(\beta)}{\partial p} \cdot \frac{\partial p}{\partial z} \cdot \frac{\partial z}{\partial \beta}
+\frac{\partial J(\beta)}{\partial \beta_0} &= -\frac{1}{n} \sum_{i=1}^{n} \frac{\partial J(\beta)}{\partial p} \cdot \frac{\partial p}{\partial z} \cdot \frac{\partial z}{\partial \beta_0} \cr
+\frac{\partial J(\beta)}{\partial \beta_1} &= -\frac{1}{n} \sum_{i=1}^{n} \frac{\partial J(\beta)}{\partial p} \cdot \frac{\partial p}{\partial z} \cdot \frac{\partial z}{\partial \beta_1}
 \end{align}
 \\]
 
@@ -188,35 +189,60 @@ J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 最後の3つ目の部分はただの重み付き和の微分なので、  
 \\[
 \begin{align}
-\frac{\partial z}{\partial \beta} = \frac{\partial x_i \beta}{\partial \beta} = x_i
+\frac{\partial z}{\partial \beta_0} &= \frac{\partial}{\partial \beta_0} (\beta_0 + \beta_1unemp_i) = 1 \cr
+\frac{\partial z}{\partial \beta_1} &= \frac{\partial}{\partial \beta_1} (\beta_0 + \beta_1unemp_i) = unemp_i \cr
 \end{align}
 \\]
 
-ただし、$x_i$は$i$番目のサンプルに関する全ての特徴量を並べた行ベクトル、すなわち  
+となる。これらを用いると求める勾配は  
 \\[
-x_i = 
+\begin{align}
+\frac{\partial J(\beta)}{\partial \beta_0} &= -\frac{1}{n} \sum_{i=1}^{n} \frac{\partial J(\beta)}{\partial p} \cdot \frac{\partial p}{\partial z} \cdot \frac{\partial z}{\partial \beta_0} \cr
+&= -\frac{1}{n} \sum_{i=1}^{n} \left( \frac{y_i}{p_i} - \frac{1-y_i}{1-p_i} \right) \cdot (1-p_i)p_i \cdot 1 \cr
+&= -\frac{1}{n} \sum_{i=1}^{n} \{ y_i(1-p_i) - (1-y_i)p_i \} \cdot 1 \cr
+&= -\frac{1}{n} \sum_{i=1}^{n} (y_i - p_i) \cr
+&= \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i) 
+\end{align}
+\\]
+
+および  
+\\[
+\begin{align}
+\frac{\partial J(\beta)}{\partial \beta_1} &= -\frac{1}{n} \sum_{i=1}^{n} \frac{\partial J(\beta)}{\partial p} \cdot \frac{\partial p}{\partial z} \cdot \frac{\partial z}{\partial \beta_1} \cr
+&= -\frac{1}{n} \sum_{i=1}^{n} \left( \frac{y_i}{p_i} - \frac{1-y_i}{1-p_i} \right) \cdot (1-p_i)p_i \cdot unemp_i \cr
+&= -\frac{1}{n} \sum_{i=1}^{n} \{ y_i(1-p_i) - (1-y_i)p_i \} \cdot unemp_i \cr
+&= -\frac{1}{n} \sum_{i=1}^{n} (y_i - p_i)unemp_i \cr
+&= \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)unemp_i
+\end{align}
+\\]
+
+となる。線形回帰のとき同様にこれらをまとめて行列表記すると  
+\\[
+\frac{\partial J(\beta)}{\partial \beta} =  
 \begin{pmatrix}
-1 & unemp_i
+\displaystyle \frac{\partial J(\beta)}{\partial \beta_0} \cr
+\cr
+\displaystyle \frac{\partial J(\beta)}{\partial \beta_1}
+\end{pmatrix}=
+\begin{pmatrix}
+\displaystyle \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)1 \cr
+\cr
+\displaystyle \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)unemp_i
+\end{pmatrix}\cr=
+\frac{1}{n}
+\begin{pmatrix}
+1_1 & \cdots & 1_i  & \cdots & 1_n \cr
+\cr
+unemp_1 & \cdots & unemp_i  & \cdots & enemp_n 
 \end{pmatrix}
-\\]
-
-を表す。これらを用いると求める勾配は  
-\\[
-\begin{align}
-\frac{\partial J(\beta)}{\partial \beta} &= -\frac{1}{n} \sum_{i=1}^{n} \frac{\partial J(\beta)}{\partial p} \cdot \frac{\partial p}{\partial z} \cdot \frac{\partial z}{\partial \beta} \cr
-&= -\frac{1}{n} \sum_{i=1}^{n} \left( \frac{y_i}{p_i} - \frac{1-y_i}{1-p_i} \right) \cdot (1-p_i)p_i \cdot x_i \cr
-&= -\frac{1}{n} \sum_{i=1}^{n} \\{ y_i(1-p_i) - (1-y_i)p_i \\} \cdot x_i \cr
-&= -\frac{1}{n} \sum_{i=1}^{n} (y_i - p_i)x_i \cr
-&= \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)x_i 
-\end{align}
-\\]
-
-となる。これをさらに行列表記すると  
-\\[
-\begin{align}
-\frac{\partial J(\beta)}{\partial \beta} &=  \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)x_i \cr
-&= \frac{1}{n} X^T(S(X\beta) - y)
-\end{align}
+\begin{pmatrix}
+p_1 - y_1 \cr
+\vdots \cr
+p_i - y_i \cr
+\vdots \cr
+p_n - y_n
+\end{pmatrix}\cr=
+\frac{1}{n} X^T(S(X\beta) - y)
 \\]
 
 を得る。この勾配を用いた  

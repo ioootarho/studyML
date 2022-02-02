@@ -93,7 +93,7 @@ crime_2 \cr
 crime_n
 \end{pmatrix}
 \quad
-x=
+X=
 \begin{pmatrix}
 1 & unemp_1 \cr 
 1 & unemp_2 \cr
