@@ -32,8 +32,8 @@ math: mathjax3
 前章で、刑法犯認知件数を$crime$ 完全失業者数を$unemp$として
 \\[
 \begin{align}
-crime_i = \beta_0 + \beta_1unemp_i + \varepsilon \cr
-\varepsilon \sim N(0, \sigma^2)
+crime_i &= \beta_0 + \beta_1unemp_i + \varepsilon \cr
+\varepsilon &\sim N(0, \sigma^2)
 \end{align}
 \\]
 という線形回帰モデルを作成した。  
@@ -62,10 +62,10 @@ crime_i = \beta_0 + \beta_1unemp_i + \varepsilon \cr
 
 ![Figure 13 Crime Histogram](./figures/CrimeHistogram.png)  
 
-新しく立てたこのフラグを$crime\_flag$とする。  
-- $crime\_flag=1$  
+新しく立てたこのフラグを$crime\\_flag$とする。  
+- $crime\\_flag=1$  
     &rarr; 481市町村  
-- $crime\_flag=0$  
+- $crime\\_flag=0$  
     &rarr; 1,357市町村  
 
 すると、相手にするのがこの散布図から  
@@ -105,9 +105,10 @@ S(x) = \frac{1}{1 + e^{-x}} = \frac{e^x}{e^x + 1}
 乱暴な言い方をすれば、ロジスティック回帰とは線形回帰式の出力にシグモイド関数を噛ませて確率として扱えるようにしたモデル。
 \\[
 \begin{align}
-y\in\{0, 1\} \cr
-z = \beta_0 + \beta_1x \cr
-P(Y=y) = \frac{1}{1+e^{-z}}
+y &\in \\{0, 1\\} \cr
+z &= \beta_0 + \beta_1x \cr
+P(Y=1) &= \frac{1}{1+e^{-z}} \cr
+where & \ P(Y=1) + P(Y=0) = 1
 \end{align}
 \\]
 
@@ -137,23 +138,105 @@ $P(Y=0)$は確率変数$y$が$0$をとる確率、$P(Y=1)$は確率変数$y$が$
 - 仮説
     - 治安が良いか悪いかを失業者の数から判別する
     - 治安が良ければ$y=0$、治安が悪ければ$y=1$として、完全失業者数を$unemp$とする
-    - $P(Y=y)$がモデルから予測される確率になる
+    - $P(Y=1)$がモデルから予測される治安が悪い確率になる
 \\[
 \begin{align}
-y\in\{0, 1\} \cr
-z = \beta_0 + \beta_1unemp \cr
-P(Y=y) = \frac{1}{1+e^{-z}}
+y &\in \\{0, 1\\} \cr
+z &= \beta_0 + \beta_1unemp \cr
+P(Y=1) &= \frac{1}{1+e^{-z}}
 \end{align}
 \\]
 
 - ロジスティック回帰の損失関数
     - 分類問題なのでLog Loss
-    - モデルから予測される確率$P(Y=y)$を$p$とおく
+    - モデルから予測される確率$P(Y=1)$を$p$とおく
     - $n$をサンプルサイズとする
-\\[
+\\
 \begin{align}
 J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 \end{align}
 \\]
 
-この損失関数を最小にするようなパラメータを勾配降下法で求める。
+この損失関数を最小にするようなパラメータを勾配降下法で求める。  
+そのためには、線形回帰のとき同様パラメータ$\beta_0, \beta_1$についての偏微分を計算して、交差エントロピー誤差の勾配を求める。  
+勾配は連鎖律により次のように計算できる。  
+\\[
+\begin{align}
+\frac{\partial J(\beta)}{\partial \beta} = -\frac{1}{n} \sum_{i=1}^{n} \frac{\partial J(\beta)}{\partial p} \cdot \frac{\partial p}{\partial z} \cdot \frac{\partial z}{\partial \beta}
+\end{align}
+\\]
+
+それぞれ計算すると、1つ目の部分は交差エントロピーの微分なので、  
+\\[
+\begin{align}
+\frac{\partial J(\beta)}{\partial p} &= \frac{\partial}{\partial p} \\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\} \cr
+&= y_i \frac{\partial}{\partial p} \log p_i + (1-y_i) \frac{\partial}{\partial p} \log(1-p_i) \cr
+&= \frac{y_i}{p_i} - \frac{1-y_i}{1-p_i}
+\end{align}
+\\]
+
+2つ目の部分はシグモイド関数の微分なので、  
+\\[
+\begin{align}
+\frac{\partial p}{\partial z} &= \frac{\partial}{\partial z} \left( \frac{1}{1+e^{-z}} \right) \cr
+&= \frac{ e^{-z} }{ (1+e^{-z})^2 } \cr
+&= \frac{ e^{-z} }{ 1+e^{-z} } \cdot \frac{1}{ 1+e^{-z} } \cr
+&= (1-p_i)p_i
+\end{align}
+\\]
+
+最後の3つ目の部分はただの重み付き和の微分なので、  
+\\[
+\begin{align}
+\frac{\partial z}{\partial \beta} = \frac{\partial x_i \beta}{\partial \beta} = x_i
+\end{align}
+\\]
+
+ただし、$x_i$は$i$番目のサンプルに関する全ての特徴量を並べた行ベクトル、すなわち  
+\\[
+x_i = 
+\begin{pmatrix}
+1 & unemp_i
+\end{pmatrix}
+\\]
+
+を表す。これらを用いると求める勾配は  
+\\[
+\begin{align}
+\frac{\partial J(\beta)}{\partial \beta} &= -\frac{1}{n} \sum_{i=1}^{n} \frac{\partial J(\beta)}{\partial p} \cdot \frac{\partial p}{\partial z} \cdot \frac{\partial z}{\partial \beta} \cr
+&= -\frac{1}{n} \sum_{i=1}^{n} \left( \frac{y_i}{p_i} - \frac{1-y_i}{1-p_i} \right) \cdot (1-p_i)p_i \cdot x_i \cr
+&= -\frac{1}{n} \sum_{i=1}^{n} \\{ y_i(1-p_i) - (1-y_i)p_i \\} \cdot x_i \cr
+&= -\frac{1}{n} \sum_{i=1}^{n} (y_i - p_i)x_i \cr
+&= \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)x_i 
+\end{align}
+\\]
+
+となる。これをさらに行列表記すると  
+\\[
+\begin{align}
+\frac{\partial J(\beta)}{\partial \beta} &=  \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)x_i \cr
+&= \frac{1}{n} X^T(S(X\beta) - y)
+\end{align}
+\\]
+
+を得る。この勾配を用いた  
+\\[
+\begin{align}
+\beta &:= \beta - \alpha \frac{\partial}{\partial \beta} J(\beta) \cr
+&= \beta - \frac{\alpha}{n} X^T(S(X\beta) - y)
+\end{align}
+\\]
+
+としてパラメータの更新を行う。
+
+## ハンズオン #2 ロジスティック回帰
+
+勾配降下法を用いてロジスティック回帰を実装する。  
+  
+**進め方**
+- [ロジスティック回帰のノートブック](https://github.com/suchu3/studyML/blob/main/handson/src/LogisticRegression.ipynb)をDockerコンテナのJupyter-LabまたはGoogle Colaboratoryで開く
+- ロジスティック回帰のノートブックのファイルパスは以下の通り
+```
+studyML/handson/src/LogisticRegression.ipynb
+```
+- ノートブック中のコメントに沿ってコードを実行する
