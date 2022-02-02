@@ -253,35 +253,35 @@ J(\beta_0, \beta_1) = \frac{1}{n}\sum_{i=1}^{n} (crime_i - \beta_0 - \beta_1unem
 となるので、これを使ってパラメータ$\beta_0, \beta_1$の値を更新していく。  
 
 なお、最小二乗法のときのように行列表記にすると、損失関数は
-$$
+\\[
 \begin{align}
 J(\beta) &= \frac{1}{n}(y-X\beta)^T(y-X\beta) \cr
 &= \frac{1}{n} (y^Ty -2\beta^TX^Ty + \beta^TX^TX\beta)
 \end{align}
-$$
+\\]
 となり、その勾配は
-$$
+\\[
 \begin{align}
 \frac{\partial}{\partial \beta}J(\beta) &= \frac{1}{n} (-2X^Ty + 2X^TX\beta) \cr
 &= \frac{2}{n}  (-X^Ty + X^TX\beta) \cr
 &= \frac{2}{n} (X\beta - y)X^T \cr
 &= \frac{2}{n} \left[ (X\beta - y)^TX \right]^T
 \end{align}
-$$
+\\]
 と書けるので、ほとんどのライブラリの実装ではパラメータ$\beta_0, \beta_1$をまとめて
-$$
+\\[
 \begin{align}
 \beta &:= \beta - \alpha \frac{\partial}{\partial \beta}J(\beta) \cr
 &= \beta - \alpha \cdot \frac{2}{n} (X\beta - y)X^T 
 \end{align}
-$$
+\\]
 として更新を行っている。  
 また、勾配の式の分子に登場する$2$が邪魔なので、これを打ち消すために最初から損失関数の分母に$2$を入れておいて
-$$
+\\[
 \begin{align}
 J(\beta) &= \frac{1}{2n}(y-X\beta)^T(y-X\beta)
 \end{align}
-$$
+\\]
 という形で損失関数を定義することもよくある。  
 
 ## ハンズオン #1 線形回帰
