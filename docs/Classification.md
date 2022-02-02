@@ -108,7 +108,7 @@ S(x) = \frac{1}{1 + e^{-x}} = \frac{e^x}{e^x + 1}
 y &\in \\{0, 1\\} \cr
 z &= \beta_0 + \beta_1x \cr
 P(Y=1) &= \frac{1}{1+e^{-z}} \cr
-where & \ P(Y=1) + P(Y=0) = 1
+where \ P(Y=1) &+ P(Y=0) = 1
 \end{align}
 \\]
 
@@ -199,7 +199,7 @@ J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 \begin{align}
 \frac{\partial J(\beta)}{\partial \beta_0} &= -\frac{1}{n} \sum_{i=1}^{n} \frac{\partial J(\beta)}{\partial p} \cdot \frac{\partial p}{\partial z} \cdot \frac{\partial z}{\partial \beta_0} \cr
 &= -\frac{1}{n} \sum_{i=1}^{n} \left( \frac{y_i}{p_i} - \frac{1-y_i}{1-p_i} \right) \cdot (1-p_i)p_i \cdot 1 \cr
-&= -\frac{1}{n} \sum_{i=1}^{n} \{ y_i(1-p_i) - (1-y_i)p_i \} \cdot 1 \cr
+&= -\frac{1}{n} \sum_{i=1}^{n} \\{ y_i(1-p_i) - (1-y_i)p_i \\} \cdot 1 \cr
 &= -\frac{1}{n} \sum_{i=1}^{n} (y_i - p_i) \cr
 &= \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i) 
 \end{align}
@@ -210,7 +210,7 @@ J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 \begin{align}
 \frac{\partial J(\beta)}{\partial \beta_1} &= -\frac{1}{n} \sum_{i=1}^{n} \frac{\partial J(\beta)}{\partial p} \cdot \frac{\partial p}{\partial z} \cdot \frac{\partial z}{\partial \beta_1} \cr
 &= -\frac{1}{n} \sum_{i=1}^{n} \left( \frac{y_i}{p_i} - \frac{1-y_i}{1-p_i} \right) \cdot (1-p_i)p_i \cdot unemp_i \cr
-&= -\frac{1}{n} \sum_{i=1}^{n} \{ y_i(1-p_i) - (1-y_i)p_i \} \cdot unemp_i \cr
+&= -\frac{1}{n} \sum_{i=1}^{n} \\{ y_i(1-p_i) - (1-y_i)p_i \\} \cdot unemp_i \cr
 &= -\frac{1}{n} \sum_{i=1}^{n} (y_i - p_i)unemp_i \cr
 &= \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)unemp_i
 \end{align}
@@ -228,7 +228,7 @@ J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 \displaystyle \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)1 \cr
 \cr
 \displaystyle \frac{1}{n} \sum_{i=1}^{n} (p_i - y_i)unemp_i
-\end{pmatrix}\cr=
+\end{pmatrix}\\=
 \frac{1}{n}
 \begin{pmatrix}
 1_1 & \cdots & 1_i  & \cdots & 1_n \cr
@@ -241,7 +241,7 @@ p_1 - y_1 \cr
 p_i - y_i \cr
 \vdots \cr
 p_n - y_n
-\end{pmatrix}\cr=
+\end{pmatrix}\\=
 \frac{1}{n} X^T(S(X\beta) - y)
 \\]
 
