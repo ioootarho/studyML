@@ -40,8 +40,8 @@ math: mathjax3
     - 刑法犯認知件数を$crime$ 完全失業者数を$unemp$とする
 \\[
 \begin{align}
-crime_i = \beta_0 + \beta_1unemp_i + \varepsilon_i \cr
-\varepsilon_i \sim N(0, \sigma^2)
+crime_i &= \beta_0 + \beta_1unemp_i + \varepsilon_i \cr
+\varepsilon_i &\sim N(0, \sigma^2)
 \end{align}
 \\]
 
@@ -78,8 +78,8 @@ J(\beta_0, \beta_1) = \frac{1}{n}\sum_{i=1}^{n} (crime_i - \beta_0 - \beta_1unem
 $(unemp_1, crime_1), (unemp_2, crime_2), \dots , (unemp_n, crime_n)$という$n$組のデータについて  
 \\[
 \begin{align}
-crime_i = \beta_0 + \beta_1unemp_i + \varepsilon_i \cr
-\varepsilon_i \sim N(0, \sigma^2)
+crime_i &= \beta_0 + \beta_1unemp_i + \varepsilon_i \cr
+\varepsilon_i &\sim N(0, \sigma^2)
 \end{align}
 \\]
 という線形回帰モデルを仮定している。  
@@ -118,8 +118,8 @@ x=
 のように表記すれば、モデルは次のように行列表記できる。  
 \\[
 \begin{align}
-y = X\beta + \varepsilon \cr
-\varepsilon \sim N_n(0, \sigma^2I_n)
+y &= X\beta + \varepsilon \cr
+\varepsilon &\sim N_n(0, \sigma^2I_n)
 \end{align}
 \\]
 このときの$X$を説明変数行列または計画行列、 $y$を目的変数ベクトルまたはターゲットベクトル、$\beta$を回帰係数ベクトルまたはパラメータベクトルと呼ぶ。  
