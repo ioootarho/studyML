@@ -17,49 +17,55 @@ Docker Desktop がインストールされていることを前提とします�
 
 ### リポジトリをクローン
 
-ここではデスクトップにクローンを作成するとします。
-```
-cd ~/Desktop
-git clone https://github.com/suchu3/studyML.git
+ここではデスクトップにクローンを作成するとします。  
+
+```sh
+$ cd ~/Desktop
+$ git clone https://github.com/suchu3/studyML.git
 ```
 
 ### コンテナネットワークを作成
 
 2つのコンテナ間で通信を行うハンズオンがあるため、コンテナのブリッジネットワークを作成しておきます。
 
-```
-docker network create deploy-handson-network
+```sh
+$ docker network create deploy-handson-network
 ```
 
 ### イメージをビルド
 
-まず、リポジトリ中のdockerディレクトリに移動します。
-```
-cd ~/Desktop/studyML/docker
+まず、リポジトリ中のdockerディレクトリに移動します。  
+
+```sh
+$ cd ~/Desktop/studyML/docker
 ```
 
-その状態でビルドコマンドを実行します。
-```
-docker build -t studyml_image .
+その状態でビルドコマンドを実行します。  
+
+```sh
+$ docker build -t studyml_image .
 ```
 
 ### コンテナを起動
 
-イメージのビルド後、次のコマンドでイメージからコンテナを起動します。
-```
-docker run --net deploy-handson-network --name studyml_container -itd -v ~/Desktop/studyML/handson:/handson -p 3000:8888 studyml_image
+イメージのビルド後、次のコマンドでイメージからコンテナを起動します。  
+
+```sh
+$ docker run --net deploy-handson-network --name studyml_container -itd -v ~/Desktop/studyML/handson:/handson -p 3000:8888 studyml_image
 ```
 
 ### Jupyter Lab を起動
 
-次のコマンドで起動したコンテナの中に入ります。
-```
-docker exec -it studyml_container bash
+次のコマンドで起動したコンテナの中に入ります。  
+
+```sh
+$ docker exec -it studyml_container bash
 ```
 
-その状態でJupyter Lab の起動コマンドを実行します。
-```
-jupyter-lab --ip 0.0.0.0 --allow-root
+その状態でJupyter Lab の起動コマンドを実行します。  
+
+```sh
+$ jupyter-lab --ip 0.0.0.0 --allow-root
 ```
 
 次のような表示が出れば起動成功です。  
@@ -68,7 +74,8 @@ jupyter-lab --ip 0.0.0.0 --allow-root
 
 ### ブラウザ表示
 
-chromeの新しいタブを開いて、アドレスバーに以下を入力します。
+chromeの新しいタブを開いて、アドレスバーに以下を入力します。  
+
 ```
 http://localhost:3000
 ```
@@ -92,24 +99,28 @@ http://localhost:3000
 Jupyter Lab を終了するときはターミナル上でCtrl+C を押下します。  
 本当に終了するか確認されるのでy を入力してEnter を押下します。  
 
-コンテナから抜けるときは次のコマンドを入力します。
-```
-exit
+コンテナから抜けるときは次のコマンドを入力します。  
+
+```sh
+$ exit
 ```
 
-コンテナを停止させるときは次のコマンドを入力します。
-```
-docker stop studyml_container
+コンテナを停止させるときは次のコマンドを入力します。  
+
+```sh
+$ docker stop studyml_container
 ```
 
-コンテナを削除するときは次のコマンドを入力します。
-```
-docker rm studyml_container
+コンテナを削除するときは次のコマンドを入力します。  
+
+```sh
+$ docker rm studyml_container
 ```
 
-ビルド済みのイメージを削除するときは次のコマンドを入力します。
-```
-docker rmi studyml_image
+ビルド済みのイメージを削除するときは次のコマンドを入力します。  
+
+```sh
+$ docker rmi studyml_image
 ```
 
 ## Google Colaboratory を使用する場合

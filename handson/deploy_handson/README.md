@@ -15,7 +15,7 @@ https://github.com/shibuiwilliam/ml-system-in-actions/tree/main/chapter4_serving
 
 ここではデスクトップにリポジトリのクローンがあるとしています。
 
-0. デプロイするONNXファイルを所定ディレクトリにコピー
+0. デプロイするONNXファイルを所定ディレクトリにコピー  
 既に同名ファイルが存在していた場合は上書きします。
 
 - コピー元
@@ -34,7 +34,7 @@ https://github.com/shibuiwilliam/ml-system-in-actions/tree/main/chapter4_serving
 $ cd ~/Desktop/studyML/handson/deploy_handson
 ```
 
-2. Docker イメージをビルド
+2. Docker イメージをビルド  
 makeコマンドが入っていない環境の場合は、コメントアウトされているdocker buildコマンドを実行してください。
 
 ```sh
@@ -46,7 +46,7 @@ $ make build_all
 #     .
 ```
 
-3. Docker でサービスを起動
+3. Docker でサービスを起動  
 makeコマンドが入っていない環境の場合は、コメントアウトされているdocker runコマンドを実行してください。
 
 ```sh
