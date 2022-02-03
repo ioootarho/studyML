@@ -164,7 +164,7 @@ J(\beta) &= \frac{1}{n}\sum_{i=1}^{n} (crime_i - \beta_0 - \beta_1unemp_i)^2 \cr
 &= \frac{1}{n} (y^Ty -2\beta^TX^Ty + \beta^TX^TX\beta)
 \end{align}
 \\]
-となる。これを$\beta$の各要素について偏微分して$=0$とおくと
+となる。これを$\beta$について微分して$=0$とおくと
 \\[
 \frac{\partial}{\partial \beta}J(\beta) = \frac{1}{n} (-2X^Ty + 2X^TX\beta) = 0
 \\]
@@ -236,18 +236,20 @@ X^TX\beta = X^Ty
 &rarr; 「発散」と呼ばれる状態  
 ![Figure 12 GradientDescent1.0001](./figures/GradientDescent_alpha1.0001.png)  
 
-きちんと計算するためには損失関数の偏微分を求める。  
+きちんと勾配を求めるためには損失関数の偏微分を計算する。  
 損失関数
 \\[
 \begin{align}
 J(\beta_0, \beta_1) = \frac{1}{n}\sum_{i=1}^{n} (crime_i - \beta_0 - \beta_1unemp_i)^2
 \end{align}
 \\]
-より、具体的に偏微分を計算すると
+より、パラメータ$\beta_0, \beta_1$それぞれについて偏微分を計算すると
 \\[
 \begin{align}
-& \beta_0 := \beta_0 - \alpha \frac{1}{n} \sum_{i=1}^{n}(crime_i-\beta_0-\beta_1unemp_i) \cr
-& \beta_1 := \beta_1 - \alpha \frac{1}{n} \sum_{i=1}^{n}(crime_i-\beta_0-\beta_1unemp_i)unemp_i
+\beta_0 &:= \beta_0 - \alpha \frac{\partial}{\partial \beta_0} J(\beta) \cr
+&= \beta_0 - \alpha \frac{2}{n} \sum_{i=1}^{n}(crime_i-\beta_0-\beta_1unemp_i) \cr
+\beta_1 &:= \beta_1 - \alpha \frac{\partial}{\partial \beta_1} J(\beta) \cr
+&= \beta_1 - \alpha \frac{2}{n} \sum_{i=1}^{n}(crime_i-\beta_0-\beta_1unemp_i)unemp_i
 \end{align}
 \\]
 となるので、これを使ってパラメータ$\beta_0, \beta_1$の値を更新していく。  

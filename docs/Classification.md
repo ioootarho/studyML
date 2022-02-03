@@ -159,7 +159,7 @@ J(\beta) = -\frac{1}{n} \sum_{i=1}^{n}\\{ y_i \log p_i + (1-y_i)\log (1-p_i)\\}
 
 この損失関数を最小にするようなパラメータを勾配降下法で求める。  
 そのためには、線形回帰のとき同様パラメータ$\beta_0, \beta_1$についての偏微分を計算して、交差エントロピー誤差の勾配を求める。  
-勾配は連鎖律により次のように計算できる。  
+この損失関数の偏微分は連鎖律により次のように計算できる。  
 \\[
 \begin{align}
 \frac{\partial J(\beta)}{\partial \beta_0} &= -\frac{1}{n} \sum_{i=1}^{n} \frac{\partial J(\beta)}{\partial p} \cdot \frac{\partial p}{\partial z} \cdot \frac{\partial z}{\partial \beta_0} \cr
@@ -250,7 +250,7 @@ p_n - y_n
 \end{align}
 \\]
 
-を得る。この勾配を用いた  
+を得る。この勾配を用いて  
 \\[
 \begin{align}
 \beta &:= \beta - \alpha \frac{\partial}{\partial \beta} J(\beta) \cr
