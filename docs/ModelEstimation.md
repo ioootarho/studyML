@@ -272,6 +272,24 @@ $$
   - 正例割合が不均衡だとAUCは大きくなる  
   &rarr; 実際には大したことないモデルでも良さそうに見えてしまう
 
+## ハンズオン #4 リアルなデータでモデリング
+
+データ前処理、バリデーションスキーム、モデルの評価指標を踏まえて、リアルなデータでモデルを作成する。  
+その後、同じデータを使用してDataRobotでもモデルを作り、両者を比較する。  
+- テーマ：電気通信事業者における、契約の解約予測
+- 分類問題
+- バリデーションスキーム：Leave One Out
+- 評価指標：AUC
+- 作成するモデル：LightGBM
+
+**進め方**
+- [モデリングのノートブック](https://github.com/suchu3/studyML/blob/main/handson/src/Modeling.ipynb)をDockerコンテナのJupyter-LabもしくはGoogle Colaboratory で開く
+- モデリングのノートブックのファイルパスは以下の通り
+```
+studyML/handson/src/Modeling.ipynb
+```
+- コメントに沿ってコードを実行する
+
 ## 学習曲線
 
 機械学習の文脈で言う学習曲線とは、横軸にサンプルサイズ、縦軸に各サンプルサイズでの損失関数の値をプロットしたグラフ。  
@@ -317,6 +335,18 @@ $$
     - 正則化を弱くする  
 
 巷で「データを増やせば増やすだけ機械学習モデルの精度は向上する」などと言われているが、アンダーフィットしている状態ではいくらデータを増やしても精度は向上しない。
+
+## ハンズオン #5 学習曲線
+
+作成したLightGBMのモデルで学習曲線をプロットしてネクストアクションを考える。  
+
+**進め方**
+- [学習曲線のノートブック](https://github.com/suchu3/studyML/blob/main/handson/src/LearningCurve.ipynb)をDockerコンテナのJupyter-LabもしくはGoogle Colaboratory で開く
+- 学習曲線のノートブックのファイルパスは以下の通り
+```
+studyML/handson/src/LearningCurve.ipynb
+```
+- コメントに沿ってコードを実行する
 
 ## バイアスとバリアンス  
 
