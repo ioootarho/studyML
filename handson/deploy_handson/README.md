@@ -1,9 +1,9 @@
-# web single pattern
+# 推論サーバ構築手順
 
-## 目的
+## はじめに
 
-Web API として推論器を公開します。  
-以下リポジトリを参考にして作成しています。  
+ハンズオン #7 モデルデプロイで使用する推論サーバのコンテナを起動する手順です。  
+ここで使用するコンテナは以下リポジトリを参考にして作成しています。  
 https://github.com/shibuiwilliam/ml-system-in-actions/tree/main/chapter4_serving_patterns/web_single_pattern
 
 ## 前提
@@ -11,16 +11,31 @@ https://github.com/shibuiwilliam/ml-system-in-actions/tree/main/chapter4_serving
 - Python 3.8 以上
 - Docker
 
-## 使い方
+## コンテナ起動
 
-0. カレントディレクトリ
+ここではデスクトップにリポジトリのクローンがあるとしています。
 
-```sh
-$ pwd
-~/studyML/handson/deploy_handson
+0. デプロイするONNXファイルを所定ディレクトリにコピー
+既に同名ファイルが存在していた場合は上書きします。
+
+- コピー元
+```
+~/Desktop/studyML/handson/src/lgb.onnx
 ```
 
-1. Docker イメージをビルド
+- コピー先
+```
+~/Desktop/studyML/handson/deploy_handson/models/lgb.onnx
+```
+
+1. 推論サーバ構築作業ディレクトリへ移動
+
+```sh
+$ cd ~/Desktop/studyML/handson/deploy_handson
+```
+
+2. Docker イメージをビルド
+makeコマンドが入っていない環境の場合は、コメントアウトされているdocker buildコマンドを実行してください。
 
 ```sh
 $ make build_all
@@ -31,7 +46,8 @@ $ make build_all
 #     .
 ```
 
-2. Docker でサービスを起動
+3. Docker でサービスを起動
+makeコマンドが入っていない環境の場合は、コメントアウトされているdocker runコマンドを実行してください。
 
 ```sh
 $ make run
@@ -44,7 +60,11 @@ $ make run
 #     studyml/deploy_handson:web_single_pattern_0.0.1
 ```
 
-3. 起動した API にクライアントからリクエスト
+## リクエスト実行
+
+起動した API にローカルホストからリクエストを投げます。  
+windowsのコマンドプロンプトから実行すると、推論リクエスト1, 2のコマンドが通らない場合があります。  
+その場合はgit bashなどから実行してみてください。
 
 ```sh
 # ヘルスチェック
@@ -109,7 +129,9 @@ $ curl \
 # }
 ```
 
-4. Docker コンテナを停止
+## コンテナ停止
+
+makeコマンドが入っていない環境の場合は、コメントアウトされているdocker rmコマンドを実行してください。
 
 ```sh
 $ make stop

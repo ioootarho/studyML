@@ -25,6 +25,8 @@ git clone https://github.com/suchu3/studyML.git
 
 ### コンテナネットワークを作成
 
+2つのコンテナ間で通信を行うハンズオンがあるため、コンテナのブリッジネットワークを作成しておきます。
+
 ```
 docker network create deploy-handson-network
 ```
